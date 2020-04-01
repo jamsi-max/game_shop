@@ -299,4 +299,7 @@ venv.bak/
 pip-selfcheck.json
 
 # End of https://www.gitignore.io/api/venv
-.idea .vscode .pyc db.sqlite3
+.idea 
+.vscode 
+.pyc 
+db.sqlite3
