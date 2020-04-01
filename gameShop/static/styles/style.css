@@ -26,7 +26,7 @@ body {
   position: relative;
 }
 .header {
-  background-image: url(../img/bg-main.jpg);
+  background-image: url(/static/img/bg-main.jpg);
   height: 725px;
 }
 .info {
@@ -86,7 +86,7 @@ body {
 .tel::before {
   content: "";
   display: inline-block;
-  background-image: url(../img/tel.png);
+  background-image: url(/static/img/tel.png);
   background-repeat: no-repeat;
   height: 26px;
   width: 17px;
@@ -104,7 +104,7 @@ body {
 .mail::before {
   content: "";
   display: inline-block;
-  background-image: url(../img/email.png);
+  background-image: url(/static/img/email.png);
   background-repeat: no-repeat;
   height: 26px;
   width: 25px;
@@ -384,6 +384,7 @@ body {
 }
 .buttom-gallery-bay:hover {
   background-color: rgba(244, 67, 54, 0.59);
+  transition: all ease-in-out .4s;
 }
 .gallery-titel-bay {
   padding: 20px 0 0 0;
@@ -406,6 +407,7 @@ body {
 .gallery-buttom:hover{
   background-color: #f0f0f0;
   cursor: pointer;
+  transition: all ease-in-out .4s;
 }
 .gallery-buttom__link{
   color: #000000;
@@ -426,7 +428,7 @@ margin-right: 4px;
 .testimonial {
   height: 537px;
   width: inherit;
-  background-image: url(../img/testimonial-bg.jpg);
+  background-image: url(/static/img/testimonial-bg.jpg);
   background-repeat: no-repeat;
   display: flex;
   flex-direction: column;
@@ -731,7 +733,7 @@ margin-right: 4px;
 }
 .subscribe {
   height: 311px;
-  background-image: url(../img/subscribe-bg.jpg);
+  background-image: url(/static/img/subscribe-bg.jpg);
 }
 .subscribe-title {
   color: #ffffff;
@@ -773,6 +775,7 @@ margin-right: 4px;
 }
 .subscribe-button:hover {
   background-color: #ce2c20;
+  transition: all ease-in-out .4s;
 }
 .contact-us {
   height: 1160px;
@@ -863,6 +866,7 @@ margin-right: 4px;
 }
 .contact-us-form-button:hover {
   background-color: #ce2c20;
+  transition: all ease-in-out .4s;
 }
 .contact-us-map-title {
   color: #f44336;

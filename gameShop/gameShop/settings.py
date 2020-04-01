@@ -122,11 +122,11 @@ STATIC_URL = '/static/'
 
 STATICFILES_DIRS = ('static',)
 
-MEDIA_URL = 'media'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+# MEDIA_URL = 'media'
+# MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-JSON_PATH = 'mainapp/json'
+# JSON_PATH = 'mainapp/json'
 
-AUTH_USER_MODEL = 'authapp.gameShop'
+# AUTH_USER_MODEL = 'authapp.gameShop'
 
-LOGIN_URL = '/auth/login/'
+# LOGIN_URL = '/auth/login/'
