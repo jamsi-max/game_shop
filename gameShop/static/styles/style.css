@@ -354,7 +354,7 @@ body {
   display: flex;
   flex-direction: column;
 }
-.gallery-activ {
+.flex-gallery-img {
   outline: 1px solid #acacac;
 }
 .gallery-item-bay {
@@ -908,7 +908,7 @@ margin-right: 4px;
   line-height: 22px;
   letter-spacing: 0.16px;
 }
-.menu-contact {
+/* .menu-contact {
     background-color: #f7f7f7;
     color: #8c8c8c;
     border-bottom: 1px solid #00000096;
@@ -931,8 +931,8 @@ iframe {
     width: 1169px;
     height: 298px; 
     border: 0;
-}
-.menu-list-active-contact {
+} */
+/* .menu-list-active-contact {
     color: #101010;
     border-bottom: 3px solid #101010;
 }
@@ -1073,4 +1073,4 @@ iframe {
   width: 473px;
   height: 65px;
   font-size: 30px;
-}
+} */
