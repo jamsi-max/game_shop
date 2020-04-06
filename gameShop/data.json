@@ -1,0 +1,38 @@
+{       
+    "links_menu": [
+        {
+            "name": "home", 
+            "href": "index"
+        },
+        {
+            "name": "gallery",
+            "href": "products"
+        },
+        {
+            "name": "Contact Us", 
+            "href": "contact"}
+    ],
+
+    "same_products": [
+        {
+            "name": "Отличный стул", 
+            "desc": "Не оторваться.", 
+            "image_src": "product-11.jpg", 
+            "alt": "продукт 11"
+        },
+        {
+            "name": "Стул повышенного качества", 
+            "desc": "Комфортно", 
+            "image_src": "product-21.jpg", 
+            "alt": "продукт 21"
+        },
+        {
+            "name": "Стул премиального качества",
+            "desc": "Просто попробуй.",
+            "image_src": "product-31.jpg",
+            "alt": "продукт 31"
+        }
+    ],
+
+
+}
