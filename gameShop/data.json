@@ -13,24 +13,62 @@
             "href": "contact"}
     ],
 
-    "same_products": [
+    "products_list": [
         {
-            "name": "Отличный стул", 
-            "desc": "Не оторваться.", 
-            "image_src": "product-11.jpg", 
-            "alt": "продукт 11"
+            "name": "BATTLEFIELD 1", 
+            "desc": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.", 
+            "price": 211,
+            "image_src": "img/battlefield-game.jpg", 
+            "alt": "BATTLEFIELD 1"
         },
         {
-            "name": "Стул повышенного качества", 
-            "desc": "Комфортно", 
-            "image_src": "product-21.jpg", 
-            "alt": "продукт 21"
+            "name": "STAR WARS:<br>Battlefront II", 
+            "desc": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.", 
+            "price": 205,
+            "image_src": "img/star-wars-game.jpg", 
+            "alt": "STAR WARS:<br>Battlefront II"
         },
         {
-            "name": "Стул премиального качества",
-            "desc": "Просто попробуй.",
-            "image_src": "product-31.jpg",
-            "alt": "продукт 31"
+            "name": "BATTLEFIELD 4", 
+            "desc": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.", 
+            "price": 384,
+            "image_src": "img/battlefield4-game.jpg", 
+            "alt": "BATTLEFIELD 4"
+        },
+        {
+            "name": "WORLD OF TANKS", 
+            "desc": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.", 
+            "price": 186,
+            "image_src": "img/world-tanks-game.jpg", 
+            "alt": "WORLD OF TANKS"
+        },
+        {
+            "name": "ASSASIN’S CREED: Rogue", 
+            "desc": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.", 
+            "price": 199,
+            "image_src": "img/assassin-game.jpg", 
+            "alt": "ASSASIN’S CREED: Rogue"
+        },
+        {
+            "name": "FOR HONOR", 
+            "desc": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.", 
+            "price": 255,
+            "image_src": "img/for-honor-game.jpg", 
+            "alt": "FOR HONOR"
+        },
+        {
+            "name": "WORLD OF WARSHIPS", 
+            "desc": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.", 
+            "price": 239,
+            "image_src": "img/world-warships-game.jpg", 
+            "alt": "WORLD OF WARSHIPS"
+        },
+        {
+            "name": "CALL OF DUTY:<br>Infinite Warface", 
+            "desc": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.", 
+            "price": 288,
+            "image_src": "img/call-duty-game.jpg", 
+            "alt": "CALL OF DUTY: Infinite Warface"
         }
     ]
 }

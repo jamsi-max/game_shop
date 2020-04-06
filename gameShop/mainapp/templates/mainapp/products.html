@@ -11,64 +11,17 @@
     <div class="container">
         <div class="gallery">
             <h2 class="gallery-text">Our Gallery</h2>
+            
             <div class="flex-gallery-row">
+            {% for item in products_list %}
                 <div class="flex-gallery-item">
-                    <img src="{% static 'img/battlefield-game.jpg' %}" alt="" class="flex-gallery-img gallery-activ">
+                    <img src="{% static item.image_src %}" alt="{{ item.alt }}" class="flex-gallery-img gallery-activ">
                     <div class="gallery-item-bay">
-                       <p class="gallery-titel-bay">BATTLEFIELD 1</p>
+                       <p class="gallery-titel-bay">{{ item.name }}</p>
                        <a class= "buttom-gallery-bay" href="#">Bay</a>
                     </div>
                 </div>
-                <div class="flex-gallery-item">
-                    <img src="{% static 'img/star-wars-game.jpg' %}" alt="" class="flex-gallery-img">
-                    <div class="gallery-item-bay">
-                       <p class="gallery-titel-bay">STAR WARS:<br>Battlefront II</p>
-                        <a class= "buttom-gallery-bay" href="#">Bay</a>
-                    </div>
-                </div>
-                <div class="flex-gallery-item">
-                    <img src="{% static 'img/battlefield4-game.jpg' %}" alt="" class="flex-gallery-img">
-                    <div class="gallery-item-bay">
-                       <p class="gallery-titel-bay">BATTLEFIELD 4</p>
-                        <a class= "buttom-gallery-bay" href="#">Bay</a>
-                    </div>
-                </div>
-                <div class="flex-gallery-item">
-                    <img src="{% static 'img/world-tanks-game.jpg' %}" alt="" class="flex-gallery-img">
-                    <div class="gallery-item-bay">
-                        <p class="gallery-titel-bay">WORLD OF TANKS</p>
-                        <a class= "buttom-gallery-bay" href="#">Bay</a>
-                    </div>
-                </div>
-
-                <div class="flex-gallery-item">
-                    <img src="{% static 'img/assassin-game.jpg' %}" alt="" class="flex-gallery-img gallery-activ">
-                    <div class="gallery-item-bay">
-                       <p class="gallery-titel-bay">ASSASIN’S CREED: Rogue</p>
-                       <a class= "buttom-gallery-bay" href="#">Bay</a>
-                    </div>
-                </div>
-                <div class="flex-gallery-item">
-                    <img src="{% static 'img/for-honor-game.jpg' %}" alt="" class="flex-gallery-img">
-                    <div class="gallery-item-bay">
-                       <p class="gallery-titel-bay">FOR HONOR</p>
-                        <a class= "buttom-gallery-bay" href="#">Bay</a>
-                    </div>
-                </div>
-                <div class="flex-gallery-item">
-                    <img src="{% static 'img/world-warships-game.jpg' %}" alt="" class="flex-gallery-img">
-                    <div class="gallery-item-bay">
-                       <p class="gallery-titel-bay">WORLD OF WARSHIPS</p>
-                        <a class= "buttom-gallery-bay" href="#">Bay</a>
-                    </div>
-                </div>
-                <div class="flex-gallery-item">
-                    <img src="{% static 'img/call-duty-game.jpg' %}" alt="" class="flex-gallery-img">
-                    <div class="gallery-item-bay">
-                        <p class="gallery-titel-bay">CALL OF DUTY:<br>Infinite Warface</p>
-                        <a class= "buttom-gallery-bay" href="#">Bay</a>
-                    </div>
-                </div>
+            {% endfor %}  
             </div>
 
             <div class="gallery-buttom">
