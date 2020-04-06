@@ -13,10 +13,9 @@
         </div>
     
         <ul class="social">
-            <li class="social-list"><a href="#" class="social-link fb"><img class="social-img" src="{% static 'img/social-fb.png' %}" alt="facebook"></a></li>
-            <li class="social-list"><a href="#" class="social-link tw"><img class="social-img" src="{% static 'img/social-tw.png' %}" alt="twitter"></a></li>
-            <li class="social-list"><a href="#" class="social-link rss"><img class="social-img" src="{% static 'img/social-rss.png' %}" alt="rss"></a></li>
-            <li class="social-list"><a href="#" class="social-link vk"><img class="social-img" src="{% static 'img/social-vk.png' %}" alt="vk"></a></li>
+            {% for item in social_links %}
+                <li class="social-list"><a href="#" class="social-link {{ item.class }}"><img class="social-img" src="{% static item.src %}" alt="facebook"></a></li>
+            {% endfor %}
         </ul>
     </div>
 {% endblock %}
@@ -99,34 +98,15 @@
     <div class="gallery gallery-main">
         <h2 class="gallery-text gallery-text-main">Our Gallery</h2>
         <div class="flex-gallery-row">
-            <div class="flex-gallery-item">
-                <img src="{% static 'img/assassin-game.jpg' %}" alt="" class="flex-gallery-img">
-                <div class="gallery-item-bay">
-                    <p class="gallery-titel-bay">ASSASIN’S CREED: Rogue</p>
-                    <a class= "buttom-gallery-bay" href="#">Bay</a>
+            {% for item in products_list %}
+                <div class="flex-gallery-item">
+                    <img src="{% static item.image_src %}" alt="item.alt" class="flex-gallery-img">
+                    <div class="gallery-item-bay">
+                        <p class="gallery-titel-bay">{{ item.name }}</p>
+                        <a class= "buttom-gallery-bay" href="#">Bay</a>
+                    </div>
                 </div>
-            </div>
-            <div class="flex-gallery-item">
-                <img src="{% static 'img/tom-raider-game.jpg' %}" alt="" class="flex-gallery-img">
-                <div class="gallery-item-bay">
-                    <p class="gallery-titel-bay">TOMB RAIDER</p>
-                    <a class= "buttom-gallery-bay" href="#">Bay</a>
-                </div>
-            </div>
-            <div class="flex-gallery-item">
-                <img src="{% static 'img/ryse-game.jpg' %}" alt="" class="flex-gallery-img">
-                <div class="gallery-item-bay">
-                    <p class="gallery-titel-bay">RYSE: Son Of Rome</p>
-                    <a class= "buttom-gallery-bay" href="#">Bay</a>
-                </div>
-            </div>
-            <div class="flex-gallery-item">
-                <img src="{% static 'img/warcraft-game.jpg' %}" alt="" class="flex-gallery-img">
-                <div class="gallery-item-bay">
-                    <p class="gallery-titel-bay">WORL OF WARCRAFT:<br>Wrath Of The Linch King</p>
-                    <a class= "buttom-gallery-bay" href="#">Bay</a>
-                </div>
-            </div>
+            {% endfor %} 
         </div>
     </div>
 </div>

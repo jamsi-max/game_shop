@@ -1,4 +1,5 @@
 from django.shortcuts import render
+import random
 
 # function upload data from file json
 import json
@@ -11,10 +12,13 @@ def get_data():
         data = []
     return data
 
+
 def index(request):
     content = {
         'page_title': 'главная',
-        'links_menu': get_data()['links_menu']
+        'links_menu': get_data()['links_menu'],
+        'social_links':  get_data()['main_social'],
+        'products_list': [get_data()['products_list'][random.randrange(0, 7)] for _ in range(4)]
     }
     return render(request, 'mainapp/index.html', context=content)
 

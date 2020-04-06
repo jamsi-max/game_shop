@@ -70,5 +70,24 @@
             "image_src": "img/call-duty-game.jpg", 
             "alt": "CALL OF DUTY: Infinite Warface"
         }
+    ],
+
+    "main_social": [
+        {
+            "class": "fb",
+            "src": "img/social-fb.png"
+        },
+        {
+            "class": "tw",
+            "src": "img/social-tw.png"
+        },
+        {
+            "class": "rss",
+            "src": "img/social-rss.png"
+        },
+        {
+            "class": "vk",
+            "src": "img/social-vk.png"
+        }
     ]
 }
