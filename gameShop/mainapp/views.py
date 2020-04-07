@@ -14,11 +14,15 @@ def get_data():
 
 
 def index(request):
+    data = get_data()
     content = {
         'page_title': 'главная',
-        'links_menu': get_data()['links_menu'],
-        'social_links':  get_data()['main_social'],
-        'products_list': [get_data()['products_list'][random.randrange(0, 7)] for _ in range(4)]
+        'links_menu': data['links_menu'],
+        'social_links':  data['main_social'],
+        'products_list': random.sample(data['products_list'], 4),
+        'services': data['services'],
+        'news': data['news'],
+        'team': data['team']
     }
     return render(request, 'mainapp/index.html', context=content)
 

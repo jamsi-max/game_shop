@@ -37,62 +37,38 @@
 </div>
 
 <div class="container">
-        <div class="services">
-            <h2 class="services-text">Services</h2>
-            <div class="services-flex">
-                <div class="col-text flex-col-1">
-                    <div class="text-flex text-flex-1">
-                        <p class="services-text-title services-text-active">Repreh Qui In Ea Voluptate</p>
-                        <p class="services-text-content">Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.</p>
+    <div class="services">
+        <h2 class="services-text">Services</h2>
+        <div class="services-block">
+            <div class="services-items">
+            {% for item in services %}
+                {% if forloop.counter0 < 3 %}
+                <div class="services-item-left">
+                    <div class="services-item-text">
+                        <p class="services-text-title {% if forloop.first %}services-text-active{% endif %}">{{ item.title }}</p>
+                        <p class="services-text-content">{{ item.content }}</p>
                     </div>
-                    <div class="text-flex text-flex-1">
-                        <p class="services-text-title">Aut Perferendis Doloribus</p>
-                        <p class="services-text-content">Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.</p>
-                    </div>
-                    <div class="text-flex text-flex-1">
-                        <p class="services-text-title">Maiores Alias Consequatur</p>
-                        <p class="services-text-content">Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.</p>
+                    <div class="services-item-img">
+                        <img src="{% static item.img %}" alt="img">
                     </div>
                 </div>
-                <div class="col-pic flex-col-2">
-                    <div class="pic pic-flex-col-1">
-                        <img src="{% static 'img/pic-fork.png' %}" alt="fork">
+                {% endif %}
+                {% if forloop.counter0 > 2 %}
+                <div class="services-item-right">
+                    <div class="services-item-img">
+                        <img src="{% static item.img %}" alt="img">
                     </div>
-                    <div class="pic pic-flex-col-1">
-                        <img src="{% static 'img/pic-dol.png' %}" alt="">
-                    </div>
-                    <div class="pic pic-flex-col-1">
-                        <img src="{% static 'img/pic-diag.png' %}" alt="">
-                    </div>
-                </div>
-                <div class="col-pic flex-col-3">
-                    <div class="pic pic-flex-col-2">
-                        <img src="{% static 'img/pic-arr.png' %}" alt="">
-                    </div>
-                    <div class="pic pic-flex-col-2">
-                        <img src="{% static 'img/pic-hom.png' %}" alt="">
-                    </div>
-                    <div class="pic pic-flex-col-2">
-                        <img src="{% static 'img/pic-set.png' %}" alt="">
+                    <div class="services-item-text">
+                        <p class="services-text-title {% if forloop.first %}services-text-active{% endif %}">{{ item.title }}</p>
+                        <p class="services-text-content">{{ item.content }}</p>
                     </div>
                 </div>
-                <div class="col-text flex-col-4">
-                    <div class="text-flex text-flex-2">
-                        <p class="services-text-title">Voluptatibus Maiores Alias</p>
-                        <p class="services-text-content">Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.</p>
-                    </div>
-                    <div class="text-flex text-flex-2">
-                        <p class="services-text-title">Dut Aut Reiciendis Maiores</p>
-                        <p class="services-text-content">Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.</p>
-                    </div>
-                    <div class="text-flex text-flex-2">
-                        <p class="services-text-title">Doloribus Volupta Maiores</p>
-                        <p class="services-text-content">Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.</p>
-                    </div>
-                </div>
+                {% endif %}
+            {% endfor %}
             </div>
-        </div> 
-</div>   
+        </div>
+    </div> 
+</div>
 
 <div class="container">
     <div class="gallery gallery-main">
@@ -101,9 +77,9 @@
             {% for item in products_list %}
                 <div class="flex-gallery-item">
                     <img src="{% static item.image_src %}" alt="item.alt" class="flex-gallery-img">
-                    <div class="gallery-item-bay">
-                        <p class="gallery-titel-bay">{{ item.name }}</p>
-                        <a class= "buttom-gallery-bay" href="#">Bay</a>
+                    <div class="gallery-item-buy">
+                        <p class="gallery-titel-buy">{{ item.name }}</p>
+                        <a class= "buttom-gallery-buy" href="#">Buy</a>
                     </div>
                 </div>
             {% endfor %} 
@@ -135,39 +111,22 @@
             <div class="news-latest-blok">
                 <div class="news-latest-title-text">Latest News</div>
                 <div class="news-latest-blok-calendar-content">
-                    <div class="news-latest-blok-calendar">
+                    {% for item in news %}
+                        <div class="news-latest-blok-calendar
+                        {% if forloop.counter0 ==  1 %}news-latest-blok-calendar-2
+                        {% elif forloop.counter0 ==  2 %}news-latest-blok-calendar-3
+                        {% endif %}">
                         <div class="news-calendar-item-1"> 
-                            <div class="news-data news-data-day">15</div>
-                            <div class="news-data news-data-month">June</div>
-                            <div class="news-data news-data-year">2016</div>
+                            <div class="news-data news-data-day">{{ item.data|slice:":2" }}</div>
+                            <div class="news-data news-data-month">{{ item.data|slice:"3:8"|title }}</div>
+                            <div class="news-data news-data-year">{{ item.data|slice:"9:13" }}</div>
                         </div>
                         <div class="news-calendar-item-2">
-                            <div class="news-calendar-title-text">Fugiat Quo Voluptas</div>
-                            <div class="news-calendar-text-content">Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse.</div>
+                            <div class="news-calendar-title-text">{{ item.news_tite }}</div>
+                            <div class="news-calendar-text-content">{{ item.news_content }}</div>
                         </div>
                     </div>
-                    <div class="news-latest-blok-calendar news-latest-blok-calendar-2">
-                        <div class="news-calendar-item-1">
-                            <div class="news-data news-data-day">18</div>
-                            <div class="news-data news-data-month">June</div>
-                            <div class="news-data news-data-year">2016</div>
-                        </div>
-                        <div class="news-calendar-item-2">
-                            <div class="news-calendar-title-text">FugQui In Ea Voluptate</div>
-                            <div class="news-calendar-text-content">Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse.</div>
-                        </div>
-                    </div>
-                    <div class="news-latest-blok-calendar news-latest-blok-calendar-3">
-                        <div class="news-calendar-item-1">
-                            <div class="news-data news-data-day">20</div>
-                            <div class="news-data news-data-month">June</div>
-                            <div class="news-data news-data-year">2016</div>
-                        </div>
-                        <div class="news-calendar-item-2">
-                            <div class="news-calendar-title-text">Autem Vel Eum Iure</div>
-                            <div class="news-calendar-text-content">Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse.</div>
-                        </div>
-                    </div>
+                    {% endfor %}
                 </div>
             </div>
             <div class="news-featured-blok">
@@ -199,10 +158,11 @@
     <div class="team">
         <div class="team-title">Our Team</div>
         <div class="team-flex">
+        {% for item in team %}
             <div class="team-flex-card">
-                <img src="{% static 'img/team-mary.jpg' %}" alt="name_worker" class="team-flex-card-img">
-                <div class="team-flex-card-title">Mary Jane</div>
-                <div class="team-flex-card-post">Vestibulum</div>
+                <img src="{% static item.img %}" alt="{{ item.name }}" class="team-flex-card-img">
+                <div class="team-flex-card-title">{{ item.name }}</div>
+                <div class="team-flex-card-post">{{ item.post }}</div>
                 <div class="team-flex-card-social">
                     <a class="team-flex-card-social-link" href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
                     <a class="team-flex-card-social-link" href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
@@ -210,39 +170,7 @@
                     <a class="team-flex-card-social-link" href="#"><i class="fa fa-vk" aria-hidden="true"></i></a>
                 </div>
             </div>
-            <div class="team-flex-card">
-                <img src="{% static 'img/team-peter.jpg' %}" alt="name_worker" class="team-flex-card-img">
-                <div class="team-flex-card-title">Peter Parker</div>
-                <div class="team-flex-card-post">Ves tibulum</div>
-                <div class="team-flex-card-social">
-                    <a class="team-flex-card-social-link" href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-                    <a class="team-flex-card-social-link" href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-                    <a class="team-flex-card-social-link" href="#"><i class="fa fa-rss" aria-hidden="true"></i></a>
-                    <a class="team-flex-card-social-link" href="#"><i class="fa fa-vk" aria-hidden="true"></i></a>
-                </div>
-            </div>
-            <div class="team-flex-card">
-                <img src="{% static 'img/team-johan.jpg' %}" alt="name_worker" class="team-flex-card-img">
-                <div class="team-flex-card-title">John Watson</div>
-                <div class="team-flex-card-post">Vestibulum</div>
-                <div class="team-flex-card-social">
-                    <a class="team-flex-card-social-link" href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-                    <a class="team-flex-card-social-link" href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-                    <a class="team-flex-card-social-link" href="#"><i class="fa fa-rss" aria-hidden="true"></i></a>
-                    <a class="team-flex-card-social-link" href="#"><i class="fa fa-vk" aria-hidden="true"></i></a>
-                </div>
-            </div>
-            <div class="team-flex-card">
-                <img src="{% static 'img/team-steven.jpg' %}" alt="name_worker" class="team-flex-card-img">
-                <div class="team-flex-card-title">Steven Wilson</div>
-                <div class="team-flex-card-post">Vestibulum</div>
-                <div class="team-flex-card-social">
-                    <a class="team-flex-card-social-link" href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-                    <a class="team-flex-card-social-link" href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-                    <a class="team-flex-card-social-link" href="#"><i class="fa fa-rss" aria-hidden="true"></i></a>
-                    <a class="team-flex-card-social-link" href="#"><i class="fa fa-vk" aria-hidden="true"></i></a>
-                </div>
-            </div>
+        {% endfor %}
         </div>
     </div>
 </div>

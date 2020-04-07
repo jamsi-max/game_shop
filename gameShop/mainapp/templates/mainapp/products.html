@@ -16,9 +16,9 @@
             {% for item in products_list %}
                 <div class="flex-gallery-item">
                     <img src="{% static item.image_src %}" alt="{{ item.alt }}" class="flex-gallery-img gallery-activ">
-                    <div class="gallery-item-bay">
-                       <p class="gallery-titel-bay">{{ item.name }}</p>
-                       <a class= "buttom-gallery-bay" href="#">Bay</a>
+                    <div class="gallery-item-buy">
+                       <p class="gallery-titel-buy">{{ item.name }}</p>
+                       <a class= "buttom-gallery-buy" href="#">Buy</a>
                     </div>
                 </div>
             {% endfor %}  
@@ -43,7 +43,7 @@
                     <p class="discount-price-dsc">$14.44
                         <span class="discount-price"> / <span> $28.90</span></span>
                     </p>
-                    <a class= "buttom-gallery-bay discount-bay" href="#">Bay</a>
+                    <a class= "buttom-gallery-buy discount-buy" href="#">Buy</a>
                 </div>
                 <img class="discount-img" src="{% static 'img/call-duty-big.jpg' %}" alt="">
             </div>
@@ -54,7 +54,7 @@
                     <p class="discount-price-dsc">$15.96
                         <span class="discount-price"> / <span> $29.99</span></span>
                     </p>
-                    <a class= "buttom-gallery-bay discount-bay" href="#">Bay</a>
+                    <a class= "buttom-gallery-buy discount-buy" href="#">Buy</a>
                 </div>
                 <img class="discount-img" src="{% static 'img/honner-big.jpg' %}" alt="">
             </div>

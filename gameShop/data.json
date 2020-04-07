@@ -89,5 +89,79 @@
             "class": "vk",
             "src": "img/social-vk.png"
         }
+    ],
+
+    "services": [
+        {
+            "title": "Repreh Qui In Ea Voluptate",
+            "content": "Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.",
+            "img": "img/pic-fork.png"
+        },
+        {
+            "title": "Aut Perferendis Doloribus",
+            "content": "Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.",
+            "img": "img/pic-dol.png"
+        },
+        {
+            "title": "Maiores Alias Consequatur",
+            "content": "Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.",
+            "img": "img/pic-diag.png"
+        },
+        {
+            "title": "Voluptatibus Maiores Alias",
+            "content": "Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.",
+            "img": "img/pic-arr.png"
+        },
+        {
+            "title": "Dut Aut Reiciendis Maiores",
+            "content": "Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.",
+            "img": "img/pic-hom.png"
+        },
+        {
+            "title": "Doloribus Volupta Maiores",
+            "content": "Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.",
+            "img": "img/pic-set.png"
+        }
+    ], 
+
+    "news": [
+        {
+            "data": "01-march-2020",
+            "news_tite": "Fugiat Quo Voluptas",
+            "news_content": "Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse."
+        },
+        {
+            "data": "04-march-2020",
+            "news_tite": "FugQui In Ea Voluptate",
+            "news_content": "Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse."
+        },
+        {
+            "data": "07-march-2020",
+            "news_tite": "Autem Vel Eum Iure",
+            "news_content": "Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse."
+        }
+    ],
+
+    "team": [
+        {
+            "name": "Mary Jane",
+            "post": "Vestibulum",
+            "img": "img/team-mary.jpg"
+        },
+        {
+            "name": "Peter Parker",
+            "post": "Vestibulum",
+            "img": "img/team-peter.jpg"
+        },
+        {
+            "name": "John Watson",
+            "post": "Vestibulum",
+            "img": "img/team-johan.jpg"
+        },
+        {
+            "name": "Steven Wilson",
+            "post": "Vestibulum",
+            "img": "img/team-steven.jpg"
+        }
     ]
 }
