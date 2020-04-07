@@ -15,7 +15,7 @@
             <div class="flex-gallery-row">
             {% for item in products_list %}
                 <div class="flex-gallery-item">
-                    <img src="{% static item.image_src %}" alt="{{ item.alt }}" class="flex-gallery-img gallery-activ">
+                    <img src="{% static item.image %}" alt="{{ item.alt }}" class="flex-gallery-img gallery-activ">
                     <div class="gallery-item-buy">
                        <p class="gallery-titel-buy">{{ item.name }}</p>
                        <a class= "buttom-gallery-buy" href="#">Buy</a>

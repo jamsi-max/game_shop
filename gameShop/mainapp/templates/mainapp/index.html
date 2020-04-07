@@ -11,10 +11,9 @@
             <br><span class="text-line"></span>
             <h2 class="Morbi">Morbi in nisl auctor</h2>
         </div>
-    
         <ul class="social">
             {% for item in social_links %}
-                <li class="social-list"><a href="#" class="social-link {{ item.class }}"><img class="social-img" src="{% static item.src %}" alt="facebook"></a></li>
+                <li class="social-list"><a href="#" class="social-link {{ item.class }}"><img class="social-img" src="{% static item.image %}" alt="{{ item.alt }}"></a></li>
             {% endfor %}
         </ul>
     </div>
