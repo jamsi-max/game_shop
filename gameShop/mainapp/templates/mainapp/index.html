@@ -13,7 +13,7 @@
         </div>
         <ul class="social">
             {% for item in social_links %}
-                <li class="social-list"><a href="#" class="social-link {{ item.class }}"><img class="social-img" src="{% static item.image %}" alt="{{ item.alt }}"></a></li>
+                <li class="social-list"><a href="#" class="social-link {{ item.class }}"><img class="social-img" src="{{ mediaURL }}{{ item.image }}" alt="{{ item.alt }}"></a></li>
             {% endfor %}
         </ul>
     </div>
@@ -48,14 +48,14 @@
                         <p class="services-text-content">{{ item.content }}</p>
                     </div>
                     <div class="services-item-img">
-                        <img src="{% static item.img %}" alt="img">
+                        <img src="{{ mediaURL }}{{ item.image }}" alt="img">
                     </div>
                 </div>
                 {% endif %}
                 {% if forloop.counter0 > 2 %}
                 <div class="services-item-right">
                     <div class="services-item-img">
-                        <img src="{% static item.img %}" alt="img">
+                        <img src="{{ mediaURL }}{{ item.image }}" alt="img">
                     </div>
                     <div class="services-item-text">
                         <p class="services-text-title {% if forloop.first %}services-text-active{% endif %}">{{ item.title }}</p>
@@ -75,7 +75,7 @@
         <div class="flex-gallery-row">
             {% for item in products_list %}
                 <div class="flex-gallery-item">
-                    <img src="{% static item.image_src %}" alt="item.alt" class="flex-gallery-img">
+                    <img src="{{ mediaURL }}{{ item.image }}" alt="{{ item.alt }}" class="flex-gallery-img">
                     <div class="gallery-item-buy">
                         <p class="gallery-titel-buy">{{ item.name }}</p>
                         <a class= "buttom-gallery-buy" href="#">Buy</a>
@@ -116,9 +116,9 @@
                         {% elif forloop.counter0 ==  2 %}news-latest-blok-calendar-3
                         {% endif %}">
                         <div class="news-calendar-item-1"> 
-                            <div class="news-data news-data-day">{{ item.data|slice:":2" }}</div>
-                            <div class="news-data news-data-month">{{ item.data|slice:"3:8"|title }}</div>
-                            <div class="news-data news-data-year">{{ item.data|slice:"9:13" }}</div>
+                            <div class="news-data news-data-day">{{ item.data|date:"d" }}</div>
+                            <div class="news-data news-data-month">{{ item.data|date:"F"|title }}</div>
+                            <div class="news-data news-data-year">{{ item.data|date:"Y" }}</div>
                         </div>
                         <div class="news-calendar-item-2">
                             <div class="news-calendar-title-text">{{ item.news_tite }}</div>
@@ -159,7 +159,7 @@
         <div class="team-flex">
         {% for item in team %}
             <div class="team-flex-card">
-                <img src="{% static item.img %}" alt="{{ item.name }}" class="team-flex-card-img">
+                <img src="{{ mediaURL }}{{ item.image }}" alt="{{ item.name }}" class="team-flex-card-img">
                 <div class="team-flex-card-title">{{ item.name }}</div>
                 <div class="team-flex-card-post">{{ item.post }}</div>
                 <div class="team-flex-card-social">

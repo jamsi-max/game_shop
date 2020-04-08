@@ -337,7 +337,7 @@ body {
   font-size: 36px;
   font-weight: 500;
   line-height: 48px;
-  padding-top: 170px;
+  padding-top: 5%;
 }
 .gallery-text-main{
   padding-top: 93px;
@@ -355,6 +355,8 @@ body {
 }
 .flex-gallery-img {
   outline: 1px solid #acacac;
+  width: 270px;
+  height: 375px;
 }
 .gallery-item-buy {
   width: 271px;
@@ -954,4 +956,19 @@ margin-right: 4px;
 }
 .services-item-right > .services-item-text{
   margin-left: 15%;
+}
+.product-category-menu{
+  display: flex;
+  width: 50%;
+  justify-content: space-evenly;
+}
+.product-category-menu-item{
+  text-decoration: none;
+  color: #4c4949e0;
+  font-size: 1.4em;
+  text-transform: uppercase;
+  margin-top: 3%;
+}
+.product-category-menu-item:hover{
+  color: red;
 }

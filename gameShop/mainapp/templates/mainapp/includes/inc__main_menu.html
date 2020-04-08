@@ -1,9 +1,17 @@
 <ul class="menu clearfix">
-    {% for item in links_menu %}
-        <li class="menu-list {% if request.resolver_match.url_name == item.href %}menu-list-active{% endif %}">
-            <a href="{% url item.href %}" class="menu-link">
-                {{ item.name|title }}
-            </a>
-        </li>
-    {% endfor %}
+    <li class="menu-list {% if request.resolver_match.url_name == 'main' %}menu-list-active{% endif %}">
+        <a href="{% url 'main' %}" class="menu-link">
+            Home
+        </a>
+    </li>
+    <li class="menu-list {% if request.resolver_match.url_name == 'index' %}menu-list-active{% endif %}">
+        <a href="{% url 'products:index' %}" class="menu-link">
+            Gallery
+        </a>
+    </li>
+    <li class="menu-list {% if request.resolver_match.url_name == 'contact' %}menu-list-active{% endif %}">
+        <a href="{% url 'contact' %}" class="menu-link">
+            Contact Us
+        </a>
+    </li>
 </ul>

@@ -15,18 +15,19 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, re_path
-import mainapp.views as mainapp
 
+import mainapp.views as mainapp
+from django.conf.urls import include
 from django.conf import settings
 from django.conf.urls.static import static
 
 
 urlpatterns = [
-    re_path('^$', mainapp.index, name='index'),
-    re_path('^products/$', mainapp.products, name='products'),
+    re_path('^$', mainapp.index, name='main'),
+    re_path('^products/', include('mainapp.urls', namespace='products')),
     re_path('^contact/$', mainapp.contact, name='contact'),
 
-    path('^admin/$', admin.site.urls),
+    path('admin/', admin.site.urls),
     
 ]
 
