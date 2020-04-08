@@ -39,10 +39,11 @@ def index(request):
 def products(request, pk=None):
     print(pk)
     products_list = Product.objects.all()
+    category = ProductCategory.objects.all()
     content = {
         'page_title': 'каталог',
-        'products_list': random.sample(list(products_list), 4),
-        'category': products_list,
+        'products_list': random.sample(list(products_list), 8),
+        'category': category,
         'mediaURL': settings.MEDIA_URL,
     }
     return render(request, 'mainapp/products.html', context=content)

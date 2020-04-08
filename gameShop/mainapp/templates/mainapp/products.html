@@ -14,8 +14,8 @@
 
             <div class="product-category-menu">
                 {% for item in category %}
-                    {% if forloop.first %}<a class="menu-list-active product-category-menu-item" href="#">все</a>{% endif %}
-                    <a class="product-category-menu-item" href="#">{{ item.category.name }}</a>
+                    {% if forloop.first %}<a class="menu-list-active product-category-menu-item" href="#">all</a>{% endif %}
+                    <a class="product-category-menu-item" href="#">{{ item.name }}</a>
                 {% endfor %}
             </div>
 
