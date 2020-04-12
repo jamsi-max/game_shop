@@ -24,6 +24,16 @@
 </head>
 
 <body>
+    
+<div class="wrapper-auth">
+    <input type="checkbox" id="modal" checked style="display: none;">
+    <div class="auth">
+        <div class="auth-login">
+            <h3>LOGIN</h3>
+            <label for="modal" class="btn-modal-close"><div><i class="fa fa-times" aria-hidden="true"></i></div></label>
+        </div>
+    </div>
+</div>
 
 <div class="container">
     {% block header %}
@@ -44,9 +54,9 @@
 
 <div class="container">
 {% block contact %}
-    <div class="contact-us">
+    <div class="contact-us contact-us-page">
         <div class="contact-us-title">Contact Us</div>
-        <div class="contact-us-flex">
+        <div class="contact-us-flex contact-us-flex-page">
             <div class="contact-us-flex-text">
                 <div class="contact-us-flex-text-title">Get in touch with us</div>
                 <div class="contact-us-flex-text-cont">Lorem ipsum dolor sit amet, consectetur adipisicing elit,sheets containing Lorem Ipsum passages sed do, At vero eos et accusamus et iusto odio digs qui blanditiis</div>
@@ -64,9 +74,11 @@
                 </form>
             </div>
         </div>
-        <div class="contact-us-map-title">Route Map</div>
-        <div class="contact-us-map">
-            <iframe src="https://yandex.ru/map-widget/v1/-/CGdsEZMx" width="1169" height="298" style="border : 0" allowfullscreen="allowfullscreen"></iframe>
+        <div class="contact-us-map-page">
+            <div class="contact-us-map-title">Route Map</div>
+            <div class="contact-us-map">
+                <iframe src="https://yandex.ru/map-widget/v1/-/CGdsEZMx" width="1169" height="298" style="border : 0" allowfullscreen="allowfullscreen"></iframe>
+            </div>
         </div>
     </div> 
     <div class="arr-contact-us-follow">

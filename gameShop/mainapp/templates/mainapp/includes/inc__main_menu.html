@@ -1,4 +1,4 @@
-<ul class="menu clearfix">
+<ul class="menu menu-contact">
     <li class="menu-list {% if request.resolver_match.url_name == 'main' %}menu-list-active{% endif %}">
         <a href="{% url 'main' %}" class="menu-link">
             Home
@@ -12,6 +12,12 @@
     <li class="menu-list {% if request.resolver_match.url_name == 'contact' %}menu-list-active{% endif %}">
         <a href="{% url 'contact' %}" class="menu-link">
             Contact Us
+        </a>
+    </li>
+    <li class="menu-list auth-menu">
+        <a for="modal" href="#" class="menu-link">
+            <i class="fa fa-sign-in" aria-hidden="true"></i>
+            <label for="modal">Login</label>
         </a>
     </li>
 </ul>

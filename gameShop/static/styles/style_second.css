@@ -3,23 +3,27 @@
   color: #8c8c8c;
   border-bottom: 1px solid #00000096;
 }
-.menu-products{
-border-bottom: 1px solid #00000096;
-}
 .contact-us-page{
   background-color: #e8e8e8;
+  display: inline-block;
+  width: 100%;
+  text-align: center; 
+}
+.contact-us-map {
+  text-align: center;
+  margin-top: 0;
 }
 .contact-us-map-page{
   background-color: #f7f7f7;
   display: inline-block;
   width: 100%;
-  text-align: center; 
+  text-align: center;
 }
 iframe {
   margin-top: 35px;
   margin-bottom: 80px;
   width: 1169px;
-  height: 298px; 
+  height: 255px; 
   border: 0;
 }
 .menu-list-active {
