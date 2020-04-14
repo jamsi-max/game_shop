@@ -17,6 +17,7 @@ from django.contrib import admin
 from django.urls import path, re_path
 
 import mainapp.views as mainapp
+import authapp.views as authapp
 from django.conf.urls import include
 from django.conf import settings
 from django.conf.urls.static import static
@@ -25,10 +26,9 @@ from django.conf.urls.static import static
 urlpatterns = [
     re_path('^$', mainapp.index, name='main'),
     re_path('^products/', include('mainapp.urls', namespace='products')),
+    re_path('^auth/', include('authapp.urls', namespace='auth')),
     re_path('^contact/$', mainapp.contact, name='contact'),
-
-    path('admin/', admin.site.urls),
-    
+    re_path('^admin/', admin.site.urls, name='admin'),
 ]
 
 if settings.DEBUG:

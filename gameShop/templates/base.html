@@ -24,21 +24,33 @@
 </head>
 
 <body>
-    
+
+{% block auth %}
 <div class="wrapper-auth">
-    <input type="checkbox" id="modal" checked style="display: none;">
-    <div class="auth">
-        <div class="auth-login">
-            <h3>LOGIN</h3>
-            <label for="modal" class="btn-modal-close"><div><i class="fa fa-times" aria-hidden="true"></i></div></label>
-        </div>
+<input type="checkbox" id="modal" style="display: none;">
+<div class="auth">
+    <div class="auth-login">
+        <h2>LOGIN</h2>
+        <label for="modal" class="btn-modal-close"><div><i class="fa fa-times" aria-hidden="true"></i></div></label>
+        <p></p>
+        <form action="{% url 'auth:login' %}" method="post" class="auth-form">
+            {% csrf_token %}
+            <input type="hidden" name="page" value="{{ request.resolver_match.url_name }}">
+            {% for item in login_form %}
+            <p>{{ item }}</p>
+            {% endfor %}
+            <input type="submit" value="enter" class="auth-btn-enter">
+        </form>
+        <a href="{% url 'auth:reg' %}" class="auth-reg-btn">registration</a>
     </div>
 </div>
+</div>
+{% endblock %}
 
 <div class="container">
     {% block header %}
         <ul class="info">
-            <li class="info-list logo"><a href="{% url 'main' %}" class="logo-link"><span class="historical">Historical</span><br><span class="games">GAMES</span></a></li>
+            <li class="info-list logo"><a href="{% url 'main' %}" class="logo-link"><span class="historical">Store</span><br><span class="games">GAMES</span></a></li>
             <li class="info-list contact"><i class="fa fa-mobile" aria-hidden="true"></i><div class="tel">+123 456 7890</div><a class="mail" href="#">info@example.com</a></li>
             <li class="info-list search"><input class="search-input" type="search" placeholder="Search"><a class="button-search" href="#"><img class="icon-search" src="{% static 'img/search.png' %}" alt=""></a></li>
         </ul>
@@ -90,8 +102,9 @@
 <div class="container">
 {% block footer %}
     <div class="footer">
-        <p class="footer-text">© {% now "Y" %} Исторические Игры. Все права защищены</p>
+        <p class="footer-text">© {% now "Y" %} Game Store. All rights reserved. Created by Jony with GeekBrains support</p>
     </div>
+    <script> </script>
 {% endblock %}
 </div> 
 

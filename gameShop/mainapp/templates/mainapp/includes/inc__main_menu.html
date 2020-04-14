@@ -4,8 +4,8 @@
             Home
         </a>
     </li>
-    <li class="menu-list {% if request.resolver_match.url_name == 'index' %}menu-list-active{% endif %}">
-        <a href="{% url 'products:index' %}" class="menu-link">
+    <li class="menu-list {% if request.resolver_match.url_name == 'category' %}menu-list-active{% endif %}">
+        <a href="{% url 'products:category' pk=0 %}" class="menu-link">
             Gallery
         </a>
     </li>
@@ -15,9 +15,17 @@
         </a>
     </li>
     <li class="menu-list auth-menu">
-        <a for="modal" href="#" class="menu-link">
+        <div class="menu-link-auth">
             <i class="fa fa-sign-in" aria-hidden="true"></i>
-            <label for="modal">Login</label>
-        </a>
+            {% if user.is_authenticated %}
+                <a href="{% url 'auth:logout' request.resolver_match.url_name %}" class="auth-logout-link">Logout</a>
+                <a href="{% url 'auth:edit' %}" class="auth-logout-link auth-edit-btn">{{ user.first_name|default:user.username|title }}</a>
+            {% else %}    
+                <label for="modal">Login</label>    
+            {% endif %}    
+            {% if user.is_superuser %}
+                <a href="{% url 'admin:index' %}" class="auth-logout-link auth-edit-btn">ADMIN</a>
+            {% endif %}       
+        </div>
     </li>
 </ul>

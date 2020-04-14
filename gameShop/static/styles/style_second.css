@@ -168,3 +168,17 @@ iframe {
   height: 65px;
   font-size: 30px;
 }
+.auth-logout-link,
+.menu-link i{
+  color: #8c8c8c;
+}
+.menu-link:hover {
+  color: none;
+  text-shadow: none;
+}
+.gallery-products{
+  height: auto;
+}
+.menu-link-auth label:hover{
+  color: #101010;
+}

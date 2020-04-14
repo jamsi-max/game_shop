@@ -61,6 +61,7 @@ body {
 }
 .historical {
   font-family: Poppins;
+  letter-spacing: 20.3px;
 }
 .games {
   font-size: 15px;
@@ -408,6 +409,7 @@ body {
   justify-content: center;
   align-items: center;
   margin-top: 91px;
+  margin-bottom: 5%;
 }
 .gallery-buttom:hover{
   border: 1px solid red;
@@ -989,15 +991,15 @@ margin-right: 4px;
   height: 100%;
   background-color: #000000;
   z-index: 100;
-  visibility: visible;
-  opacity: 0.75;
-  top: 0;
-  transition: .5s all;
-}
-#modal:checked ~ .auth{
   visibility: hidden;
   opacity: 0;
-  transition: .5s all;
+  top: 0;
+  transition: opacity .5s, visibility .5s;
+}
+#modal:checked ~ .auth{
+  visibility: visible;
+  opacity: 0.8;
+  transition: opacity .5s, visibility .5s;
 }
 .auth-login{
   margin: 0px auto;
@@ -1022,10 +1024,79 @@ margin-right: 4px;
   top: 5%;
   left: 95%;
 }
-.menu-link label{
+.menu-link-auth label{
   cursor: pointer;
-  margin-left: 4px;
+  margin-left: 10px;
 }
-.menu-link:last-child{
-  cursor: auto;
+.menu-link-auth label:hover{
+  color: #ffffff;
+  text-shadow: 0 0 1px #000;
+}
+.auth-logout-link{
+  text-decoration: none;
+  color: rgb(0, 0, 0);
+  text-transform: capitalize;
+  margin-left: 10px;
+}
+.auth-logout-link:hover{
+  color: #ffffff;
+  text-shadow: 0 0 1px #000;
+}
+.menu-link-auth i{
+  font-size: 30px;
+}
+.menu-link-auth{
+  display: flex;
+  align-items: center;
+  font-family: 'Roboto', sans-serif;
+  font-size: 1.1em;
+  font-weight: 600;
+  letter-spacing: 0.36px;
+}
+.auth-form{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+form > p{
+  margin-top: 5%;
+}
+form > p{
+  width: 100%;
+}
+.form-log-item{
+  color: white;
+  width: 50%;
+  height: 55px;
+  background: none;
+  outline: none;
+  border: 1px solid #fff;
+  border-radius: 5px;
+  padding-left: 4%;
+  font-size: 1.5em;
+}
+form input:active{
+  outline: none;
+  border: none;
+}
+.auth-reg-btn,
+.auth-btn-enter{
+  display: block;
+  width: 40%;
+  padding: 3% 0;
+  text-decoration: none;
+  color: white;
+  border: 1px solid #fff;
+  border-radius: 5px;
+  margin: 0 auto;
+  font-size: 1.2em;
+  text-transform: uppercase;
+  background: none;
+  margin-top: 5%;
+}
+.auth-btn-enter:hover,
+.auth-reg-btn:hover{
+  cursor: pointer;
+  color: red;
+  border-color: red;
 }

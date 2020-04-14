@@ -1,4 +1,4 @@
-{% extends 'mainapp/base.html' %}
+{% extends 'base.html' %}
 {% load static %}
 
 {% block css %}
@@ -9,13 +9,13 @@
 {% block container %}
    
     <div class="container">
-        <div class="gallery">
+        <div class="gallery gallery-products">
             <h2 class="gallery-text">Our Gallery</h2>
 
             <div class="product-category-menu">
+                <a class="{% if request.resolver_match.kwargs.pk == 0 %}menu-list-active{% endif %} product-category-menu-item" href="{% url 'products:category' pk=0 %}">all</a>
                 {% for item in category %}
-                    {% if forloop.first %}<a class="menu-list-active product-category-menu-item" href="#">all</a>{% endif %}
-                    <a class="product-category-menu-item" href="#">{{ item.name }}</a>
+                    <a class="{% if request.resolver_match.kwargs.pk == item.pk %}menu-list-active{% endif %} product-category-menu-item" href="{% url 'products:category' item.pk %}">{{ item.name }}</a>
                 {% endfor %}
             </div>
 
