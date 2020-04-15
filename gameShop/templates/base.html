@@ -14,8 +14,8 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,400,700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{% static 'styles/normalize.css' %}">
-    <link rel="stylesheet" href="{% static 'styles/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/normalize.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
 {% endblock %}
 
 {% block js %}
@@ -36,6 +36,7 @@
         <form action="{% url 'auth:login' %}" method="post" class="auth-form">
             {% csrf_token %}
             <input type="hidden" name="page" value="{{ request.resolver_match.url_name }}">
+            <input type="hidden" name="pk" value="{{ request.resolver_match.kwargs.pk }}">
             {% for item in login_form %}
             <p>{{ item }}</p>
             {% endfor %}

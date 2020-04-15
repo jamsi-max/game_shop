@@ -13,15 +13,18 @@ def login(request):
         user = auth.authenticate(username=username, password=password)
         if user and user.is_active:
             auth.login(request, user)
-            return HttpResponseRedirect(reverse(request.POST['page'] if request.POST['page'] != 'category' else 'products:index'))
-
-    return HttpResponseRedirect(reverse(request.POST['page'] if request.POST['page'] != 'category' else 'products:index'))
+            if request.POST['page'] != 'category':
+                return HttpResponseRedirect(reverse(request.POST['page']))
+            else:
+                return HttpResponseRedirect(reverse('products:category', kwargs={'pk': 0}))
 
 
 def logout(request, page):
     auth.logout(request)
-    return HttpResponseRedirect(reverse(page if page != 'category' else 'products:index'))
-
+    if page != 'category':
+        return HttpResponseRedirect(reverse(page))
+    else:
+        return HttpResponseRedirect(reverse('products:category', kwargs={'pk': 0}))
 
 def reg(request):
     title = 'registration'

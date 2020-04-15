@@ -3,7 +3,7 @@
 
 {% block css %}
     {{ block.super }}
-    <link rel="stylesheet" href="{% static 'styles/style_second.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style_second.css' %}">
 {% endblock %}
 
 {% block container %}
@@ -11,7 +11,6 @@
     <div class="container">
         <div class="gallery gallery-products">
             <h2 class="gallery-text">Our Gallery</h2>
-
             <div class="product-category-menu">
                 <a class="{% if request.resolver_match.kwargs.pk == 0 %}menu-list-active{% endif %} product-category-menu-item" href="{% url 'products:category' pk=0 %}">all</a>
                 {% for item in category %}
