@@ -36,9 +36,8 @@
         <form action="{% url 'auth:login' %}" method="post" class="auth-form">
             {% csrf_token %}
             <input type="hidden" name="page" value="{{ request.resolver_match.url_name }}">
-            <input type="hidden" name="pk" value="{{ request.resolver_match.kwargs.pk }}">
             {% for item in login_form %}
-            <p>{{ item }}</p>
+                <p>{{ item }}</p>
             {% endfor %}
             <input type="submit" value="enter" class="auth-btn-enter">
         </form>

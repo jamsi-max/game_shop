@@ -21,9 +21,8 @@ from authapp.forms import ShopUserLoginForm
 
 
 def index(request):
-    print()
-    if request.method != 'POST':
-        login_form = ShopUserLoginForm()
+    
+    login_form = ShopUserLoginForm()
     services = Services.objects.all()
     products_list = Product.objects.all()
     main_social = MainSocial.objects.all()
@@ -43,8 +42,8 @@ def index(request):
 
 
 def products(request, pk=None):
-    if request.method != 'POST':
-        login_form = ShopUserLoginForm()
+
+    login_form = ShopUserLoginForm()
     if pk is not None and pk != 0:
         products_list = Product.objects.filter(category__pk=pk)
     else:
@@ -61,8 +60,8 @@ def products(request, pk=None):
 
 
 def contact(request):
-    if request.method != 'POST':
-        login_form = ShopUserLoginForm()
+
+    login_form = ShopUserLoginForm()
     content = {
         'page_title': 'контакты',
         'login_form': login_form,
