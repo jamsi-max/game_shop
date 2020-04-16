@@ -1,6 +1,6 @@
 from django.shortcuts import render
 import random
-
+from basketapp.models import Basket
 from mainapp.models import ProductCategory, Product, MainSocial, Services, News, Team
 from django.conf import settings
 
@@ -19,9 +19,15 @@ from authapp.forms import ShopUserLoginForm
 #         data = []
 #     return data
 
+def get_basket_count(request):
+    if request.user.is_authenticated:
+        return sum(request.user.basket.values_list('quantity', flat=True))
+
+def get_basket_price(request):
+    if request.user.is_authenticated:
+        return sum(x.get_price_all() for x in Basket.objects.filter(user=request.user))
 
 def index(request):
-    
     login_form = ShopUserLoginForm()
     services = Services.objects.all()
     products_list = Product.objects.all()
@@ -36,18 +42,19 @@ def index(request):
         'news': news,
         'team': team,
         'mediaURL': settings.MEDIA_URL,
-        'login_form': login_form, 
+        'login_form': login_form,
+        'basket': {'count': get_basket_count(request), 'price': get_basket_price(request)}, 
     }
     return render(request, 'mainapp/index.html', context=content)
 
 
 def products(request, pk=None):
-
     login_form = ShopUserLoginForm()
     if pk is not None and pk != 0:
         products_list = Product.objects.filter(category__pk=pk)
     else:
         products_list = Product.objects.all()
+        
     category = ProductCategory.objects.all()
     content = {
         'page_title': 'каталог',
@@ -55,6 +62,7 @@ def products(request, pk=None):
         'category': category,
         'mediaURL': settings.MEDIA_URL,
         'login_form': login_form,
+        'basket': {'count': get_basket_count(request), 'price': get_basket_price(request)}, 
     }
     return render(request, 'mainapp/products.html', context=content)
 
@@ -65,5 +73,6 @@ def contact(request):
     content = {
         'page_title': 'контакты',
         'login_form': login_form,
+        'basket': {'count': get_basket_count(request), 'price': get_basket_price(request)}, 
     }
     return render(request, 'mainapp/contact.html', context=content)

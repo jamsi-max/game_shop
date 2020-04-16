@@ -1,30 +1,30 @@
-from django.shortcuts import render, HttpResponseRedirect
+from django.shortcuts import render, HttpResponseRedirect, reverse
 from authapp.forms import ShopUserLoginForm, ShopUserRegisterForm, ShopUserEditForm
 from django.contrib import auth
 from django.urls import reverse
 from django.conf import settings
 
 def login(request):
+
     login_form = ShopUserLoginForm(data=request.POST)
+    print(f'1 - {login_form.errors}')
     if request.method == 'POST' and login_form.is_valid():
         username = request.POST['username']
         password = request.POST['password']
-
+    
         user = auth.authenticate(username=username, password=password)
+        
         if user and user.is_active:
             auth.login(request, user)
-            if request.POST['page'] != 'category':
-                return HttpResponseRedirect(reverse(request.POST['page']))
-            else:
-                return HttpResponseRedirect(reverse('products:category', kwargs={'pk': 0}))
-
-
-def logout(request, page):
-    auth.logout(request)
-    if page != 'category':
-        return HttpResponseRedirect(reverse(page))
+            return HttpResponseRedirect(request.META['HTTP_REFERER'])
     else:
-        return HttpResponseRedirect(reverse('products:category', kwargs={'pk': 0}))
+        return HttpResponseRedirect(request.META['HTTP_REFERER'])
+
+
+def logout(request):
+    auth.logout(request)
+    return HttpResponseRedirect(request.META['HTTP_REFERER'])
+
 
 def reg(request):
     title = 'registration'

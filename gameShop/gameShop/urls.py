@@ -24,11 +24,12 @@ from django.conf.urls.static import static
 
 
 urlpatterns = [
-    re_path('^$', mainapp.index, name='main'),
-    re_path('^products/', include('mainapp.urls', namespace='products')),
-    re_path('^auth/', include('authapp.urls', namespace='auth')),
-    re_path('^contact/$', mainapp.contact, name='contact'),
-    re_path('^admin/', admin.site.urls, name='admin'),
+    re_path(r'^$', mainapp.index, name='main'),
+    re_path(r'^products/', include('mainapp.urls', namespace='products')),
+    re_path(r'^auth/', include('authapp.urls', namespace='auth')),
+    re_path(r'^basket/', include('basketapp.urls', namespace='basket')),
+    re_path(r'^contact/$', mainapp.contact, name='contact'),
+    re_path(r'^admin/', admin.site.urls, name='admin'),
 ]
 
 if settings.DEBUG:

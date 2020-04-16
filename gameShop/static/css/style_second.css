@@ -182,3 +182,11 @@ iframe {
 .menu-link-auth label:hover{
   color: #101010;
 }
+.admin-link{
+  color: #ce2c20;
+  margin-left: 30%;
+  font-size: 1.2em;
+  border: 1px solid;
+  padding: 3%;
+  border-radius: 5px;
+}

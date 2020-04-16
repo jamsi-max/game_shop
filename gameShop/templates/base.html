@@ -32,10 +32,8 @@
     <div class="auth-login">
         <h2>LOGIN</h2>
         <label for="modal" class="btn-modal-close"><div><i class="fa fa-times" aria-hidden="true"></i></div></label>
-        <p></p>
         <form action="{% url 'auth:login' %}" method="post" class="auth-form">
             {% csrf_token %}
-            <input type="hidden" name="page" value="{{ request.resolver_match.url_name }}">
             {% for item in login_form %}
                 <p>{{ item }}</p>
             {% endfor %}

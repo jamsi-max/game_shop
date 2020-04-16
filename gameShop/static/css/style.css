@@ -169,7 +169,7 @@ body {
   font-size: 17px;
   font-weight: 600;
   letter-spacing: 0.36px;
-  font-size: 1.1em;
+  font-size: 1.2em;
 }
 .menu-list-active {
   border-bottom: 3px solid #ffffff;
@@ -979,7 +979,6 @@ margin-right: 4px;
   color: red;
 }
 .auth-menu{
-  margin-left: 10%;
   font-size: 1.2em;
 }
 .menu li:first-child{
@@ -1052,6 +1051,7 @@ margin-right: 4px;
   font-size: 1.1em;
   font-weight: 600;
   letter-spacing: 0.36px;
+  margin-left: 35%;
 }
 .auth-form{
   display: flex;
@@ -1099,4 +1099,41 @@ form input:active{
   cursor: pointer;
   color: red;
   border-color: red;
+}
+.admin-link{
+  color: #ce2c20;
+  margin-left: 30%;
+  font-size: 1.2em;
+  border: 1px solid;
+  padding: 3%;
+  border-radius: 5px;
+}
+.basket-block{
+  position: relative;
+  margin-left: 20%;
+}
+.basket-link{
+  text-decoration: none;
+  color: #000000;
+}
+.basket-count {
+  position: absolute;
+  background: red;
+  color: white;
+  border: 1px solid white;
+  border-radius: 100px;
+  padding: 1px 7px;
+  top: -15px;
+  left: 23px;
+}
+.basket-price{
+  font-weight: 500;
+  position: absolute;
+  top: 30px;
+  left: -11px;
+  color: #000000;
+}
+.auth-edit-btn{
+  border: 1px solid;
+  padding: 5px;
 }

@@ -5,6 +5,6 @@ import mainapp.views as mainapp
 app_name = 'mainapp'
 
 urlpatterns = [
-    re_path('^$', mainapp.products, name='index'),
+    re_path(r'^$', mainapp.products, name='index'),
     path('category/<int:pk>/', mainapp.products, name='category'),
 ]
