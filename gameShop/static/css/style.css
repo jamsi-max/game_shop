@@ -1162,16 +1162,17 @@ form input:active{
   transition: opacity .3s, visibility .3s;
 }
 .flex-gallery-item-desc h3{
-font-size: 1.4em;
+font-size: 2em;
 }
 .flex-gallery-item-desc p{
   letter-spacing: 0.2em;
   line-height: 1.4em;
+  font-size: 1.2em;
 }
 .flex-gallery-item-desc .flex-gallery-item-price{
-  color: rgb(244, 67, 54);
+  color: rgb(0, 255, 8);
   font-weight: bold;
-  font-size: 2.5em;
+  font-size: 4em;
 }
 .flex-gallery-link:hover > .flex-gallery-item-desc{
   visibility: visible;

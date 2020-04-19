@@ -22,8 +22,12 @@ from authapp.forms import ShopUserLoginForm
 def get_basket(request):
     return request.user.basket.all() if request.user.is_authenticated else []
 
+def get_same_products(current_product):
+    same_products = current_product.category.product_set.exclude(pk=current_product.pk)
+    return random.sample(list(same_products), 4) if len(same_products) > 4 else same_products
+  
+
 def index(request):
-    login_form = ShopUserLoginForm()
     services = Services.objects.all()
     products_list = Product.objects.all()
     main_social = MainSocial.objects.all()
@@ -37,14 +41,13 @@ def index(request):
         'news': news,
         'team': team,
         'mediaURL': settings.MEDIA_URL,
-        'login_form': login_form,
+        'login_form': ShopUserLoginForm(),
         'basket': get_basket(request), 
     }
     return render(request, 'mainapp/index.html', context=content)
 
 
 def products(request, pk=None):
-    login_form = ShopUserLoginForm()
     if pk is not None and pk != 0:
         products_list = Product.objects.filter(category__pk=pk)
     else:
@@ -56,16 +59,25 @@ def products(request, pk=None):
         'products_list': products_list,
         'category': category,
         'mediaURL': settings.MEDIA_URL,
-        'login_form': login_form,
+        'login_form': ShopUserLoginForm(),
         'basket': get_basket(request),
     }
     return render(request, 'mainapp/products.html', context=content)
 
+
 def product(request, pk):
-    return render(request, 'mainapp/product.html', context={'pk': pk})
+    current_product = current_product = Product.objects.filter(pk=pk).first()
+    content = {
+        'page_title': 'product',
+        'current_product': current_product,
+        'products_list': get_same_products(current_product)[:4],
+        'login_form': ShopUserLoginForm(),
+        'mediaURL': settings.MEDIA_URL,
+    }
+    return render(request, 'mainapp/product.html', context=content)
+
 
 def contact(request):
-
     login_form = ShopUserLoginForm()
     content = {
         'page_title': 'контакты',

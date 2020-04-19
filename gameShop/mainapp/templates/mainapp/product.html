@@ -1,37 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/static/fonts/font-awesome/css/font-awesome.css">
-    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,400,700&display=swap" rel="stylesheet">    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/static/css/normalize.css">
-    <link rel="stylesheet" href="/static/css/style.css">
-    <title>Product</title>
-</head>
-<body>
+{% extends 'base.html' %}
+{% load static %}
 
-    <div class="container">
-        <div class="header-contact">
-            <ul class="info">
-                <li class="info-list logo"><a href="/" class="logo-link"><span class="historical">Historical</span><br><span class="games">GAMES</span></a></li>
-                <li class="info-list contact"><i class="fa fa-mobile" aria-hidden="true"></i><div class="tel">+123 456 7890</div><a class="mail" href="#">info@example.com</a></li>
-                <li class="info-list search"><input class="search-input" type="search" placeholder="Search"><a class="button-search" href="#"><img class="icon-search" src="/static/img/search.png" alt=""></a></li>
-            </ul>
-            
-            <ul class="menu menu-contact menu-products">
-                <li class="menu-list menu-list-active-contact"><a href="#" class="menu-link">Home</a></li>
-                <li class="menu-list"><a href="#" class="menu-link">About</a></li>
-                <li class="menu-list"><a href="#" class="menu-link">Services</a></li>
-                <li class="menu-list"><a href="/products" class="menu-link">Gallery</a></li>
-                <li class="menu-list"><a href="#" class="menu-link">News</a></li>
-                <li class="menu-list"><a href="#" class="menu-link">Team</a></li>
-                <li class="menu-list"><a href="/contact" class="menu-link">Contact Us</a></li>
-            </ul>
-        </div>
-    </div>
+{% block css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'css/style_second.css' %}">
+{% endblock %}
 
+{% block container %}
     <div class="container">
         <div class="product">
             <div class="product-img">
@@ -68,72 +43,7 @@
     <div class="container">
         <div class="gallery gallery-main gallery-main-similar">
             <h2 class="gallery-text gallery-text-similar">Similar games</h2>
-            <div class="flex-gallery-row">
-                <div class="flex-gallery-item gallery-item-similar">
-                    <img src="/static/img/shadow-similar.jpg" alt="" class="flex-gallery-img gallery-activ">
-                    <div class="gallery-item-buy item-buy-similar">
-                       <p class="gallery-titel-buy">MIDDLE-EARTH:<br>Shadow Of War</p>
-                       <a class= "buttom-gallery-buy" href="#">Buy</a>
-                    </div>
-                </div>
-                <div class="flex-gallery-item gallery-item-similar">
-                    <img src="/static/img/dishonored-similar.jpg" alt="" class="flex-gallery-img">
-                    <div class="gallery-item-buy item-buy-similar">
-                       <p class="gallery-titel-buy">DISHONORED 2</p>
-                        <a class= "buttom-gallery-buy" href="#">Buy</a>
-                    </div>
-                </div>
-                <div class="flex-gallery-item gallery-item-similar">
-                    <img src="/static/img/thief-similar.jpg" alt="" class="flex-gallery-img">
-                    <div class="gallery-item-buy item-buy-similar">
-                       <p class="gallery-titel-buy">THIEF</p>
-                        <a class= "buttom-gallery-buy" href="#">Buy</a>
-                    </div>
-                </div>
-                <div class="flex-gallery-item gallery-item-similar">
-                    <img src="/static/img/hitman-similar.jpg" alt="" class="flex-gallery-img">
-                    <div class="gallery-item-buy item-buy-similar">
-                        <p class="gallery-titel-buy">HITMAN</p>
-                        <a class= "buttom-gallery-buy" href="#">Buy</a>
-                    </div>
-                </div>
-            </div>
+            {% include 'includes/inc__product_item.html' %}
         </div>
     </div>
-
-    <div class="container">
-        <div class="contact-us-page-products">
-            <div class="contact-us-title">Contact Us</div>
-            <div class="contact-us-flex contact-us-flex-page">
-                <div class="contact-us-flex-text">
-                    <div class="contact-us-flex-text-title">Get in touch with us</div>
-                    <div class="contact-us-flex-text-cont">Lorem ipsum dolor sit amet, consectetur adipisicing elit,sheets containing Lorem Ipsum passages sed do, At vero eos et accusamus et iusto odio digs qui blanditiis</div>
-                    <div class="contact-us-flex-text-addr">Leningradsky AVE 39, BLDG 79 MOSCOW 125167, Russia</div>
-                    <div class="contact-us-flex-text-tel">Telephone : +00 111 222 3333</div>
-                    <div class="contact-us-flex-text-fax">FAX : +1 888 888 4444</div>
-                    <div class="contact-us-flex-text-email">Email : <span class="contact-us-flex-text-email-span">mail@example.com</span></div>
-                </div>
-                <div class="contact-us-flex-form">
-                    <form class="contact-us-flex-form-panel" action="#">
-                        <input class="contact-us-flex-form-item" type="text" placeholder="Name">
-                        <input class="contact-us-flex-form-item" type="email" placeholder="Email">
-                        <textarea class="contact-us-flex-form-item contact-us-flex-form-textarea" name="contact-us-message" id="contact-us-message-id" cols="30" rows="10" placeholder="Message"></textarea>
-                        <a class="contact-us-form-button" href="#">Submit</a>
-                    </form>
-                </div>
-            </div>
-            
-            <div class="contact-us-map-page">
-               <div class="contact-us-map-title">Route Map</div>
-                <iframe src="https://yandex.ru/map-widget/v1/-/CGdsEZMx" allowfullscreen="allowfullscreen"></iframe>
-            </div>
-        </div> 
-    </div>
-
-    <div class="container">
-        <div class="footer">
-            <p class="footer-text">© 2020 Исторические Игры. Все права защищены</p>
-        </div>
-    </div> 
-</body>
-</html>
+{% endblock %}

@@ -94,8 +94,9 @@ iframe {
   background-color: #f7f7f7;
 }
 .gallery-main-similar{
-  background-color: #e3e3e3;
+  background-color: #f7f7f7;
   height: 687px;
+  padding-bottom: 1%;
 }
 .gallery-text-similar{
   padding: 0;
