@@ -1,0 +1,18 @@
+<div class="flex-gallery-row">
+    {% for item in products_list %}
+        <div class="flex-gallery-item">
+            <a href="{{ item.get_absolute_url }}" class="flex-gallery-link">
+                <div class="flex-gallery-item-desc">
+                    <h3>{{ item.name }}</h3>
+                    <p>{{ item.desc }}</p>
+                    <span class="flex-gallery-item-price">{{ item.price }} $</span>
+                </div>
+                <img src="{{ mediaURL }}{{ item.image }}" alt="{{ item.alt }}" class="flex-gallery-img gallery-activ">
+            </a>
+            <div class="gallery-item-buy">
+                <p class="gallery-titel-buy">{{ item.name }}</p>
+                <a class= "buttom-gallery-buy" href="#">Buy</a>
+            </div>
+        </div>
+    {% endfor %}  
+</div>

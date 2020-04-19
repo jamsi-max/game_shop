@@ -90,7 +90,7 @@ def forwards_func(apps, schema_editor):
     prod_model.objects.create(
         pk=5,
         category=pro_cat_obj,
-        name="CALL OF DUTY:<br>Infinite Warface", 
+        name="CALL OF DUTY: Infinite Warface", 
         desc="Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
         desc_long="The plot is set in a fictional history of real world events and follows the centuries-old struggle between the Assassins, who fight for peace with free will, and the Templars, who desire peace through control. The story is set in the mid-18th century during the Seven Years' War, and follows Shay Patrick Cormac, an Assassin-turned-Templar who hunts down former members of his Brotherhood after being betrayed by them. Gameplay in Rogue is very similar to that of Black Flag with a mixture of ship-based naval exploration and third-person land-based exploration with some new features.", 
         price="28.89",
@@ -120,7 +120,7 @@ def forwards_func(apps, schema_editor):
     prod_model.objects.create(
         pk=7,
         category=pro_cat_obj,
-        name="WORL OF WARCRAFT:<br>Wrath Of The Linch King", 
+        name="WORL OF WARCRAFT: Wrath Of The Linch King", 
         desc="Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
         desc_long="The plot is set in a fictional history of real world events and follows the centuries-old struggle between the Assassins, who fight for peace with free will, and the Templars, who desire peace through control. The story is set in the mid-18th century during the Seven Years' War, and follows Shay Patrick Cormac, an Assassin-turned-Templar who hunts down former members of his Brotherhood after being betrayed by them. Gameplay in Rogue is very similar to that of Black Flag with a mixture of ship-based naval exploration and third-person land-based exploration with some new features.", 
         price="27.99",
@@ -203,7 +203,7 @@ def forwards_func(apps, schema_editor):
     prod_model.objects.create(
         pk=12,
         category=pro_cat_obj,
-        name="STAR WARS:<br>Battlefront II", 
+        name="STAR WARS: Battlefront II", 
         desc="Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
         desc_long="The plot is set in a fictional history of real world events and follows the centuries-old struggle between the Assassins, who fight for peace with free will, and the Templars, who desire peace through control. The story is set in the mid-18th century during the Seven Years' War, and follows Shay Patrick Cormac, an Assassin-turned-Templar who hunts down former members of his Brotherhood after being betrayed by them. Gameplay in Rogue is very similar to that of Black Flag with a mixture of ship-based naval exploration and third-person land-based exploration with some new features.", 
         price="20.50",
@@ -248,7 +248,7 @@ def forwards_func(apps, schema_editor):
     prod_model.objects.create(
         pk=15,
         category=pro_cat_obj,
-        name="MIDDLE-EARTH:<br>Shadow Of War", 
+        name="MIDDLE-EARTH: Shadow Of War", 
         desc="Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
         desc_long="The plot is set in a fictional history of real world events and follows the centuries-old struggle between the Assassins, who fight for peace with free will, and the Templars, who desire peace through control. The story is set in the mid-18th century during the Seven Years' War, and follows Shay Patrick Cormac, an Assassin-turned-Templar who hunts down former members of his Brotherhood after being betrayed by them. Gameplay in Rogue is very similar to that of Black Flag with a mixture of ship-based naval exploration and third-person land-based exploration with some new features.", 
         price="21.78",

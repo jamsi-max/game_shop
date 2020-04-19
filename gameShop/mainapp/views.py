@@ -19,13 +19,8 @@ from authapp.forms import ShopUserLoginForm
 #         data = []
 #     return data
 
-def get_basket_count(request):
-    if request.user.is_authenticated:
-        return sum(request.user.basket.values_list('quantity', flat=True))
-
-def get_basket_price(request):
-    if request.user.is_authenticated:
-        return sum(x.get_price_all() for x in Basket.objects.filter(user=request.user))
+def get_basket(request):
+    return request.user.basket.all() if request.user.is_authenticated else []
 
 def index(request):
     login_form = ShopUserLoginForm()
@@ -43,7 +38,7 @@ def index(request):
         'team': team,
         'mediaURL': settings.MEDIA_URL,
         'login_form': login_form,
-        'basket': {'count': get_basket_count(request), 'price': get_basket_price(request)}, 
+        'basket': get_basket(request), 
     }
     return render(request, 'mainapp/index.html', context=content)
 
@@ -62,10 +57,12 @@ def products(request, pk=None):
         'category': category,
         'mediaURL': settings.MEDIA_URL,
         'login_form': login_form,
-        'basket': {'count': get_basket_count(request), 'price': get_basket_price(request)}, 
+        'basket': get_basket(request),
     }
     return render(request, 'mainapp/products.html', context=content)
 
+def product(request, pk):
+    return render(request, 'mainapp/product.html', context={'pk': pk})
 
 def contact(request):
 
@@ -73,6 +70,6 @@ def contact(request):
     content = {
         'page_title': 'контакты',
         'login_form': login_form,
-        'basket': {'count': get_basket_count(request), 'price': get_basket_price(request)}, 
+        'basket': get_basket(request),
     }
     return render(request, 'mainapp/contact.html', context=content)

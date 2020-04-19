@@ -14,22 +14,12 @@
             <div class="product-category-menu">
                 <a class="{% if request.resolver_match.kwargs.pk == 0 %}menu-list-active{% endif %} product-category-menu-item" href="{% url 'products:category' pk=0 %}">all</a>
                 {% for item in category %}
-                    <a class="{% if request.resolver_match.kwargs.pk == item.pk %}menu-list-active{% endif %} product-category-menu-item" href="{% url 'products:category' item.pk %}">{{ item.name }}</a>
+                    <a class="{% if request.resolver_match.kwargs.pk == item.pk %}menu-list-active{% endif %} product-category-menu-item" href="{{ item.get_absolute_url }}">{{ item.name }}</a>
                 {% endfor %}
             </div>
-
-            <div class="flex-gallery-row">
-            {% for item in products_list %}
-                <div class="flex-gallery-item">
-                    <a href="{% url 'basket:add' item.pk %}"><img src="{{ mediaURL }}{{ item.image }}" alt="{{ item.alt }}" class="flex-gallery-img gallery-activ"></a>
-                    <div class="gallery-item-buy">
-                       <p class="gallery-titel-buy">{{ item.name }}</p>
-                       <a class= "buttom-gallery-buy" href="#">Buy</a>
-                    </div>
-                </div>
-            {% endfor %}  
-            </div>
-
+   
+            {% include 'includes/inc__product_item.html' %}
+            
             <div class="gallery-buttom">
                 <a href="#" class="gallery-buttom__link">
                     <span>Show more games</span>

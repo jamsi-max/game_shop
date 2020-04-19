@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.shortcuts import reverse
 
 class ProductCategory(models.Model):
     name = models.CharField(verbose_name='Категория', max_length=64, unique=True)
@@ -8,6 +8,9 @@ class ProductCategory(models.Model):
 
     def __str__(self):
         return self.name
+
+    def get_absolute_url(self):
+        return reverse('products:category', kwargs={'pk': self.pk}) 
 
 class Product(models.Model):
     category = models.ForeignKey(ProductCategory, on_delete=models.CASCADE)
@@ -25,6 +28,9 @@ class Product(models.Model):
 
     def __str__(self):
         return f"{self.name} ({self.category})"
+
+    def get_absolute_url(self):
+        return reverse('products:product', kwargs={'pk': self.pk}) 
 
 class MainSocial(models.Model):
     name = models.CharField(verbose_name='имя социальной сети', max_length=24, unique=True)
@@ -50,6 +56,9 @@ class News(models.Model):
 
     def __str__(self):
         return self.news_tite
+
+    def get_absolute_url(self):
+        return reverse('news', kwargs={'pk': self.pk}) 
 
 class Team(models.Model):
     name = models.CharField(verbose_name='имя', max_length=32)
