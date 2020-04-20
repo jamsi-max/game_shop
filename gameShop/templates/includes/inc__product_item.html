@@ -11,7 +11,7 @@
             </a>
             <div class="gallery-item-buy">
                 <p class="gallery-titel-buy">{{ item.name }}</p>
-                <a class= "buttom-gallery-buy" href="#">Buy</a>
+                <a class= "buttom-gallery-buy" href="{{ item.get_absolute_url }}">Buy</a>
             </div>
         </div>
     {% endfor %}  

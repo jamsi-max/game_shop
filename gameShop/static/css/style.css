@@ -1107,6 +1107,7 @@ form input:active{
   border: 1px solid;
   padding: 3%;
   border-radius: 5px;
+  width: 85px;
 }
 .basket-block{
   position: relative;

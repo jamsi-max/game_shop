@@ -21,6 +21,14 @@ def forwards_func(apps, schema_editor):
         age=25,
     )
 
+    user_model.objects.create(
+        email="ddfgt@bk.ru",
+        password=make_password('uelhjy123'),
+        username="user1",
+        is_superuser="False",
+        age=26,
+    )
+
     pro_cat_obj = pro_cat_model.objects.create(
         pk=1,
         name="action",
@@ -67,7 +75,7 @@ def forwards_func(apps, schema_editor):
         image="products_images/assassin-game.jpg", 
         alt="ASSASIN’S CREED: Rogue",
         quantity=8,
-        discount=0,
+        discount=10,
         is_active="True",
         created_at="2020-04-05 16:15:53.373277",
         updated_at="2020-04-07 17:35:53.373277",
@@ -97,7 +105,7 @@ def forwards_func(apps, schema_editor):
         image="products_images/call-duty-game.jpg", 
         alt="CALL OF DUTY",
         quantity=9,
-        discount=0,
+        discount=10,
         is_active="True",
         created_at="2020-04-01 16:15:53.373277",
         updated_at="2020-04-03 17:35:53.373277",
@@ -142,7 +150,7 @@ def forwards_func(apps, schema_editor):
         image="products_images/doom-eternal-game.jpg", 
         alt="DOOM ETERNAL",
         quantity=7,
-        discount=0,
+        discount=15,
         is_active="True",
         created_at="2020-04-07 16:15:53.373277",
         updated_at="2020-04-08 17:35:53.373277",
@@ -187,7 +195,7 @@ def forwards_func(apps, schema_editor):
         image="products_images/thief-similar-game.jpg", 
         alt="THIEF",
         quantity=9,
-        discount=0,
+        discount=20,
         is_active="True",
         created_at="2020-04-01 16:15:53.373277",
         updated_at="2020-04-05 17:35:53.373277",
@@ -225,7 +233,7 @@ def forwards_func(apps, schema_editor):
         image="products_images/ryse-game.jpg", 
         alt="RYSE",
         quantity=10,
-        discount=0,
+        discount=20,
         is_active="True",
         created_at="2020-04-03 16:15:53.373277",
         updated_at="2020-04-04 17:35:53.373277",
@@ -255,7 +263,7 @@ def forwards_func(apps, schema_editor):
         image="products_images/shadow-similar-game.jpg", 
         alt="MIDDLE-EARTH",
         quantity=16,
-        discount=0,
+        discount=10,
         is_active="True",
         created_at="2020-04-02 16:15:53.373277",
         updated_at="2020-04-07 17:35:53.373277",

@@ -27,7 +27,6 @@ def logout(request):
 
 
 def reg(request):
-    title = 'registration'
 
     if request.method == 'POST':
         reg_form = ShopUserRegisterForm(request.POST, request.FILES)
@@ -39,14 +38,13 @@ def reg(request):
         reg_form = ShopUserRegisterForm()
 
     content={
-        'page_title': title,
+        'page_title': 'registration',
         'reg_form': reg_form,
     }
     return render(request, 'authapp/reg.html', context=content)
 
 
 def edit(request):
-    title = 'edit'
 
     if request.method == 'POST':
         edit_form = ShopUserEditForm(request.POST, request.FILES, instance=request.user)
@@ -58,7 +56,7 @@ def edit(request):
         edit_form = ShopUserEditForm(instance=request.user)
     
     content = {
-        'page_title': title,
+        'page_title': 'edit',
         'edit_form': edit_form,
         'mediaURL': settings.MEDIA_URL,
     }

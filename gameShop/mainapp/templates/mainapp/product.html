@@ -10,31 +10,27 @@
     <div class="container">
         <div class="product">
             <div class="product-img">
-                <img class="product-img-big" src="/static/img/assasin-product-big.jpg" alt="">
+                <img class="product-img-big" src="{{ mediaURL }}{{ current_product.image }}" alt="">
                 <div class="product-gallery">
+                    {% for i in '1234' %}
                     <a href="#">
-                        <img src="/static/img/assasin-small-1.jpg" alt="">
+                        <img src="{{ mediaURL }}{{ current_product.image }}" alt="{{ i }}">
                     </a>
-                    <a href="#">
-                        <img src="/static/img/assasin-small-2.jpg" alt="">
-                    </a>
-                    <a href="#">
-                        <img src="/static/img/assasin-small-3.jpg" alt="">
-                    </a>
-                    <a href="#">
-                        <img src="/static/img/assasin-small-4.jpg" alt="">
-                    </a>
+                    {% endfor %}
                 </div>   
             </div>
             <div class="product-text">
                 <div class="product-text-title-price">
                     <div class="product-text-title-block">
-                        <span class="product-text-title-top">Assasin’s Creed:</span>
-                        <span class="product-text-title-bottom">Rogue</span>
-                        <span class="product-text-price">$29.99</span>
+                        <span class="product-text-title-top">{{ current_name_list.0 }}{% if current_name_list.1 %}:</span>
+                                <span class="product-text-title-bottom">{{ current_name_list.1 }}</span>
+                            {% else %}
+                                </span>
+                            {% endif %}
+                        <span class="product-text-price">${{ current_product.price }}</span>
                     </div>
-                    <a class= "buttom-gallery-buy product-text-buy" href="#">Buy</a>
-                    <span class="product-text-dsc">The plot is set in a fictional history of real world events and follows the centuries-old struggle between the Assassins, who fight for peace with free will, and the Templars, who desire peace through control. The story is set in the mid-18th century during the Seven Years' War, and follows Shay Patrick Cormac, an Assassin-turned-Templar who hunts down former members of his Brotherhood after being betrayed by them. Gameplay in Rogue is very similar to that of Black Flag with a mixture of ship-based naval exploration and third-person land-based exploration with some new features.</span>
+                    <a class= "buttom-gallery-buy product-text-buy" href="{% url 'basket:add' current_product.pk %}">Buy</a>
+                    <span class="product-text-dsc">{{ current_product.desc_long }}</span>
                 </div>  
             </div>
         </div>

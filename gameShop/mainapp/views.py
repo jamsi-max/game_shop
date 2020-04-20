@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 import random
 from basketapp.models import Basket
 from mainapp.models import ProductCategory, Product, MainSocial, Services, News, Team
@@ -23,9 +23,15 @@ def get_basket(request):
     return request.user.basket.all() if request.user.is_authenticated else []
 
 def get_same_products(current_product):
-    same_products = current_product.category.product_set.exclude(pk=current_product.pk)
-    return random.sample(list(same_products), 4) if len(same_products) > 4 else same_products
+    same_products = list(current_product.category.product_set.exclude(pk=current_product.pk))
+    return random.sample(same_products, 4) if len(same_products) > 4 else same_products
   
+def get_name(current_product):
+    return current_product.name.split(':')
+
+def get_discount_list():
+    return [_ for _ in Product.objects.exclude(discount=0)]
+
 
 def index(request):
     services = Services.objects.all()
@@ -34,7 +40,7 @@ def index(request):
     news = News.objects.order_by('-data')[:3]
     team = Team.objects.all()[:4]
     content = {
-        'page_title': 'главная',
+        'page_title': 'main',
         'social_links': main_social,
         'products_list': random.sample(list(products_list), 4),
         'services': services,
@@ -48,6 +54,11 @@ def index(request):
 
 
 def products(request, pk=None):
+    #!!!!!!!!!!! Делаем два прордукта со скидкой 
+
+    # it = random.sample(get_discount_list(),2)[0]
+    # print(f'{it.name}, {it.price}, {float(it.price)-float(it.price)*(it.discount/100)}')
+    
     if pk is not None and pk != 0:
         products_list = Product.objects.filter(category__pk=pk)
     else:
@@ -55,7 +66,7 @@ def products(request, pk=None):
         
     category = ProductCategory.objects.all()
     content = {
-        'page_title': 'каталог',
+        'page_title': 'gallery',
         'products_list': products_list,
         'category': category,
         'mediaURL': settings.MEDIA_URL,
@@ -66,13 +77,16 @@ def products(request, pk=None):
 
 
 def product(request, pk):
-    current_product = current_product = Product.objects.filter(pk=pk).first()
+    current_product = get_object_or_404(Product, pk=pk)
     content = {
+        'page_title': 'product',
+        'current_name_list': get_name(current_product),
         'page_title': 'product',
         'current_product': current_product,
         'products_list': get_same_products(current_product)[:4],
         'login_form': ShopUserLoginForm(),
         'mediaURL': settings.MEDIA_URL,
+        'basket': get_basket(request),
     }
     return render(request, 'mainapp/product.html', context=content)
 
