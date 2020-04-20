@@ -21,13 +21,7 @@
                 <a href="{% url 'auth:logout' %}" class="auth-logout-link">Logout</a>
                 <a href="{% url 'auth:edit' %}" class="auth-logout-link auth-edit-btn">{{ user.first_name|default:user.username|title }}</a>
                 <div class="basket-block">
-                    <a href="{% url 'basket:index' %}" class="basket-link">
-                        <i class="fa fa-shopping-basket" aria-hidden="true"></i>
-                        {% if basket %}
-                        <span class="basket-count">{{ basket.0.get_quantity }}</span>
-                        <span class="basket-price">{{ basket.0.get_total }}$</span>
-                        {% endif %}
-                    </a>
+                    {% include 'includes/inc__basket_view.html' %}
                 </div>
             {% else %}    
                 <label for="modal">Login</label>    

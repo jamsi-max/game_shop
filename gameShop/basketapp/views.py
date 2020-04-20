@@ -16,24 +16,46 @@ def index(request):
     }
     return render(request, 'basketapp/basket.html', context=content)
 
-@login_required
-def add(request, pk):
-    product = get_object_or_404(Product, pk=pk)
+# @login_required
+# def add(request, pk):
+#     product = get_object_or_404(Product, pk=pk)
     
-    # check auth user
-    # if request.user.is_authenticated:
-    #     basket = request.user.basket.filter(product=product).first()
-    # else:
-    #     return HttpResponseRedirect(request.META['HTTP_REFERER'])
-    basket = request.user.basket.filter(product=product).first()
+#     # check auth user
+#     # if request.user.is_authenticated:
+#     #     basket = request.user.basket.filter(product=product).first()
+#     # else:
+#     #     return HttpResponseRedirect(request.META['HTTP_REFERER'])
+#     basket = request.user.basket.filter(product=product).first()
 
-    if not basket:
-        basket = Basket(user=request.user, product=product)
+#     if not basket:
+#         basket = Basket(user=request.user, product=product)
 
-    basket.quantity += 1
-    basket.save()
+#     basket.quantity += 1
+#     basket.save()
 
-    return HttpResponseRedirect(request.META['HTTP_REFERER'])
+#     return HttpResponseRedirect(request.META['HTTP_REFERER'])
+
+def add(request, pk):
+    if not request.user.is_authenticated:
+        return JsonResponse({'result': 0})
+    else:
+        product = get_object_or_404(Product, pk=int(pk))
+        basket_item = request.user.basket.filter(product=product).first()
+
+        if not basket_item:
+            basket_item = Basket(user=request.user, product=product)
+        
+        basket_item.quantity += 1
+        basket_item.save()
+
+        content = {
+            'basket': request.user.basket.order_by('product__price'),
+            'mediaURL': settings.MEDIA_URL,
+        }
+        result = render_to_string('includes/inc__basket_view.html', context=content)
+
+        return JsonResponse({'result': result})
+
 
 @login_required
 def remove(request, pk):
@@ -57,3 +79,6 @@ def update(request, pk, quantity):
 
         result = render_to_string('includes/inc__basket_list.html', context=content)
         return JsonResponse({'result': result})
+
+
+        

@@ -1,17 +1,13 @@
 $(function() {
-    $(".basket-list, input[type=number]").change(function(event){
-        console.log(1)
+       $(".basket-list").on("change", "input[type=number]", function(event){
        let target = event.target;
        $.ajax({
-           url:"/basket/update/" + target.name + "/" + target.value + "/",
-           
-           success: function(data) {
-            //    console.log(data)
+           url: "/basket/update/" + target.name + "/" + target.value + "/",
+           success: function(data){
                $('.basket-list').html(data.result);
            },
        });
-
-    //    event.preventDefault();
+       event.preventDefault();
     });
 });
 
