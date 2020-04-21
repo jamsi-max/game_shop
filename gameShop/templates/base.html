@@ -20,6 +20,7 @@
 
 {% block js %}
     <script src="{% static 'js/jquery-3.4.1.min.js' %}"></script>
+    <script src="{% static 'js/base.js' %}"></script>
 {% endblock %}
     
 </head>
@@ -30,18 +31,7 @@
 <div class="wrapper-auth">
 <input type="checkbox" id="modal" style="display: none;">
 <div class="auth">
-    <div class="auth-login">
-        <h2>LOGIN</h2>
-        <label for="modal" class="btn-modal-close"><div><i class="fa fa-times" aria-hidden="true"></i></div></label>
-        <form action="{% url 'auth:login' %}" method="post" class="auth-form">
-            {% csrf_token %}
-            {% for item in login_form %}
-                <p>{{ item }}</p>
-            {% endfor %}
-            <input type="submit" value="enter" class="auth-btn-enter">
-        </form>
-        <a href="{% url 'auth:reg' %}" class="auth-reg-btn">registration</a>
-    </div>
+    {% include 'includes/inc__auth_form.html' %}
 </div>
 </div>
 {% endblock %}
@@ -53,9 +43,9 @@
             <li class="info-list contact"><i class="fa fa-mobile" aria-hidden="true"></i><div class="tel">+000 000 0000</div><a class="mail" href="#">jony@mail.com</a></li>
             <li class="info-list search"><input class="search-input" type="search" placeholder="Search"><a class="button-search" href="#"><img class="icon-search" src="{% static 'img/search.png' %}" alt=""></a></li>
         </ul>
-        
+        <div class="main-menu">
         {% include 'includes/inc__main_menu.html' %}
-        
+        </div>
     {% endblock %}
 </div>
 

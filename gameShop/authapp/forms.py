@@ -7,6 +7,10 @@ class ShopUserLoginForm(AuthenticationForm):
         model = ShopUser
         fields = ('username', 'password')
 
+    # widgets = {
+    #     'username': forms.TextInput(attrs={'class': 'form-log-item'})
+    # }
+
     def __init__(self, *args, **kwars):
         super(ShopUserLoginForm, self).__init__(*args, **kwars)
         for field_name, field in self.fields.items():

@@ -11,50 +11,33 @@ from django.conf import settings
 def index(request):
     content = {
         'page_title': 'basket',
-        'basket': request.user.basket.order_by('product__price'),
+        'basket': request.user.basket.order_by('-product__price'),
         'mediaURL': settings.MEDIA_URL,
     }
     return render(request, 'basketapp/basket.html', context=content)
 
-# @login_required
-# def add(request, pk):
-#     product = get_object_or_404(Product, pk=pk)
-    
-#     # check auth user
-#     # if request.user.is_authenticated:
-#     #     basket = request.user.basket.filter(product=product).first()
-#     # else:
-#     #     return HttpResponseRedirect(request.META['HTTP_REFERER'])
-#     basket = request.user.basket.filter(product=product).first()
-
-#     if not basket:
-#         basket = Basket(user=request.user, product=product)
-
-#     basket.quantity += 1
-#     basket.save()
-
-#     return HttpResponseRedirect(request.META['HTTP_REFERER'])
 
 def add(request, pk):
-    if not request.user.is_authenticated:
-        return JsonResponse({'result': 0})
-    else:
-        product = get_object_or_404(Product, pk=int(pk))
-        basket_item = request.user.basket.filter(product=product).first()
+    if request.is_ajax():
+        if not request.user.is_authenticated:
+            return JsonResponse({'result': 0})
+        else:
+            product = get_object_or_404(Product, pk=int(pk))
+            basket_item = request.user.basket.filter(product=product).first()
 
-        if not basket_item:
-            basket_item = Basket(user=request.user, product=product)
-        
-        basket_item.quantity += 1
-        basket_item.save()
+            if not basket_item:
+                basket_item = Basket(user=request.user, product=product)
+            
+            basket_item.quantity += 1
+            basket_item.save()
 
-        content = {
-            'basket': request.user.basket.order_by('product__price'),
-            'mediaURL': settings.MEDIA_URL,
-        }
-        result = render_to_string('includes/inc__basket_view.html', context=content)
+            content = {
+                'basket': request.user.basket.order_by('-product__price'),
+                'mediaURL': settings.MEDIA_URL,
+            }
+            result = render_to_string('includes/inc__basket_view.html', context=content)
 
-        return JsonResponse({'result': result})
+            return JsonResponse({'result': result})
 
 
 @login_required
@@ -73,7 +56,7 @@ def update(request, pk, quantity):
             item.delete()
 
         content = {
-            'basket': request.user.basket.order_by('product__price'),
+            'basket': request.user.basket.order_by('-product__price'),
             'mediaURL': settings.MEDIA_URL,
         }
 

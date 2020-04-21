@@ -3,23 +3,54 @@ from authapp.forms import ShopUserLoginForm, ShopUserRegisterForm, ShopUserEditF
 from django.contrib import auth
 from django.urls import reverse
 from django.conf import settings
+from django.http import JsonResponse
+from django.template.loader import render_to_string
 
+# def login(request):
+#     if request.method == 'POST':
+#         login_form = ShopUserLoginForm(data=request.POST)
+
+#         if login_form.is_valid():
+#             username = request.POST['username']
+#             password = request.POST['password']
+            
+#             user = auth.authenticate(username=username, password=password)
+
+#             if user and user.is_active:
+#                 auth.login(request, user)
+#                 return HttpResponseRedirect(request.META['HTTP_REFERER'])
+#         else:
+#             print('--------------------------------')
+#             print(login_form)
+#             content = {
+#             'result': 0,
+#             'errors': login_form,
+#             }
+#             result = render_to_string('includes/inc__auth_form.html', context=content)
+#             return JsonResponse({'result': result})
 def login(request):
-
-    login_form = ShopUserLoginForm(data=request.POST)
-    print(f'1 - {login_form.errors}')
-    if request.method == 'POST' and login_form.is_valid():
-        username = request.POST['username']
-        password = request.POST['password']
-    
-        user = auth.authenticate(username=username, password=password)
+    if request.is_ajax():
+        login_form = ShopUserLoginForm(data=request.POST)
         
-        if user and user.is_active:
-            auth.login(request, user)
-            return HttpResponseRedirect(request.META['HTTP_REFERER'])
-    else:
-        return HttpResponseRedirect(request.META['HTTP_REFERER'])
+        if login_form.is_valid():
+            username = request.POST['username']
+            password = request.POST['password']
+            
+            user = auth.authenticate(username=username, password=password)
 
+            if user and user.is_active:
+                auth.login(request, user)
+
+                content = {
+                    'user': request.user,
+                    'basket': request.user.basket.all(),
+                }
+
+                result = render_to_string('includes/inc__main_menu.html', context=content)
+                return JsonResponse({'result': result})
+
+        else:
+            return JsonResponse({'result': 0, 'error': login_form.errors})
 
 def logout(request):
     auth.logout(request)
