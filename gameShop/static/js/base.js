@@ -37,7 +37,8 @@ $(function() {
             data: csrfSerialaze,
             success: function(data){
                 if (!data.result){
-                    $('.form-login-errors').text(data.error.__all__[0].split('.')[0])
+                    let err = Object.keys(data.error)
+                    $('.form-login-errors').text(data.error[err[0]]);
                 }else{
                     $(".main-menu").html(data.result);
                     $("#modal").prop('checked', false);
@@ -50,4 +51,41 @@ $(function() {
     });
 
     logout();
+
+    $('.product-category-menu').on('click', ".product-category-menu-item", function(event){
+       let elm = document.querySelector(".menu-list-active");
+       console.log(elm);
+       elm.classList.remove('menu-list-active');
+       console.log(elm);
+        // document.querySelector(".menu-list-active").classList.toggle("menu-list-active");
+        event.target.classList.add("menu-list-active");
+        $.ajax({
+            url: $(event.target).data('url'),
+            success: function(data){
+                if (!data.result){
+                    $(".product-items-block").text(' No products ');
+                }else{
+                    $(".product-items-block").html(data.result);
+                }
+            },
+        });
+    event.preventDefault();
+    });
+
+    $('.product-category-menu').on('click', ".product-category-menu-item", function(event){
+
+        $.ajax({
+            url: $(event.target).data('url'),
+            success: function(data){
+                if (!data.result){
+                    $(".product-items-block").text(' No products ');
+                }else{
+                    $(".product-items-block").html(data.result);
+                }
+            },
+        });
+    event.preventDefault();
+    });
+
+
 });

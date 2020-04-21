@@ -3,6 +3,8 @@ import random
 from basketapp.models import Basket
 from mainapp.models import ProductCategory, Product, MainSocial, Services, News, Team
 from django.conf import settings
+from django.http import JsonResponse
+from django.template.loader import render_to_string
 
 from authapp.forms import ShopUserLoginForm
 
@@ -53,12 +55,28 @@ def index(request):
     return render(request, 'mainapp/index.html', context=content)
 
 
-def products(request, pk=None):
-    #!!!!!!!!!!! Делаем два прордукта со скидкой 
+# def products(request, pk=None):
+#     #!!!!!!!!!!! Делаем два прордукта со скидкой 
 
-    # it = random.sample(get_discount_list(),2)[0]
-    # print(f'{it.name}, {it.price}, {float(it.price)-float(it.price)*(it.discount/100)}')
+#     # it = random.sample(get_discount_list(),2)[0]
+#     # print(f'{it.name}, {it.price}, {float(it.price)-float(it.price)*(it.discount/100)}')
     
+#     if pk is not None and pk != 0:
+#         products_list = Product.objects.filter(category__pk=pk)
+#     else:
+#         products_list = Product.objects.all()
+        
+#     category = ProductCategory.objects.all()
+#     content = {
+#         'page_title': 'gallery',
+#         'products_list': products_list,
+#         'category': category,
+#         'mediaURL': settings.MEDIA_URL,
+#         'login_form': ShopUserLoginForm(),
+#         'basket': get_basket(request),
+#     }
+#     return render(request, 'mainapp/products.html', context=content)
+def products(request, pk=None):
     if pk is not None and pk != 0:
         products_list = Product.objects.filter(category__pk=pk)
     else:
@@ -73,6 +91,10 @@ def products(request, pk=None):
         'login_form': ShopUserLoginForm(),
         'basket': get_basket(request),
     }
+    if request.is_ajax():
+        result = render_to_string('includes/inc__product_item.html', context=content)
+        return JsonResponse({'result': result})
+        
     return render(request, 'mainapp/products.html', context=content)
 
 

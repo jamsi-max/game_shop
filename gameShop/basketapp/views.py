@@ -45,6 +45,7 @@ def remove(request, pk):
     get_object_or_404(Basket, pk=pk).delete()
     return HttpResponseRedirect(reverse('basket:index'))
 
+
 @login_required
 def update(request, pk, quantity):
     if request.is_ajax():
