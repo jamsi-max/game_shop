@@ -31,6 +31,10 @@ class Product(models.Model):
 
     def get_absolute_url(self):
         return reverse('products:product', kwargs={'pk': self.pk}) 
+    
+    @property
+    def get_discount_price(self):
+        return float(self.price) - (float(self.price) * (self.discount / 100))
 
 class MainSocial(models.Model):
     name = models.CharField(verbose_name='имя социальной сети', max_length=24, unique=True)

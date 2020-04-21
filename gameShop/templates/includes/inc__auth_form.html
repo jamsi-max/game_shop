@@ -3,7 +3,6 @@
     <div class="form-login-errors" style=""></div>
     <label for="modal" class="btn-modal-close"><div><i class="fa fa-times" aria-hidden="true"></i></div></label>
     <form id="loginForm" method="post" class="auth-form" data-url="{% url 'auth:login' %}">
-        <!-- action="{% url 'auth:login' %}" -->
         {% csrf_token %}
         {% for item in login_form %}
             <p>{{ item }}</p>

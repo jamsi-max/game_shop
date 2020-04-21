@@ -18,7 +18,7 @@
         <div class="menu-link-auth">
             <i class="fa fa-sign-in" aria-hidden="true"></i>
             {% if user.is_authenticated %}
-                <a href="{% url 'auth:logout' %}" class="auth-logout-link">Logout</a>
+                <a href="#" class="auth-logout-link">Logout</a>
                 <a href="{% url 'auth:edit' %}" class="auth-logout-link auth-edit-btn">{{ user.first_name|default:user.username|title }}</a>
                 <div class="basket-block">
                     {% include 'includes/inc__basket_view.html' %}

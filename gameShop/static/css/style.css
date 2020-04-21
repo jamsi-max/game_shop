@@ -1186,3 +1186,26 @@ font-size: 2em;
   font-size: 2em;
   padding-top: 3%;
 }
+.flex-gallery-item-discount{
+  color: red;
+  position: absolute;
+  font-size: 3em;
+  font-weight: bold;
+  transform: rotate(-45deg);
+  top: -2%;
+  left: -7%;
+  border: 1px solid;
+}
+.flex-gallery-item-newprice{
+  color: #00ff08;
+  font-size: 2.4em;
+  font-weight: bold;
+  border: 1px solid;
+  padding: 1%;
+}
+.flex-gallery-item-oldprice{
+  color: #efff00;
+  text-decoration: line-through;
+  font-size: 2.5em;
+  font-weight: 400;
+}
