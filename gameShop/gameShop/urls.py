@@ -28,8 +28,11 @@ urlpatterns = [
     re_path(r'^products/', include('mainapp.urls', namespace='products')),
     re_path(r'^auth/', include('authapp.urls', namespace='auth')),
     re_path(r'^basket/', include('basketapp.urls', namespace='basket')),
+    re-path(r'^admin/', include('adminapp.url', namespace='admin')),
     re_path(r'^contact/$', mainapp.contact, name='contact'),
-    re_path(r'^admin/', admin.site.urls, name='admin'),
+    
+
+    # re_path(r'^admin/', admin.site.urls, name='admin'),
 ]
 
 if settings.DEBUG:
