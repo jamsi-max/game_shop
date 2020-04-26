@@ -1,0 +1,31 @@
+h1{
+    text-align: center;
+    margin: 2% 0;
+}
+.admin-block{
+    display: flex;
+    justify-content: center;
+}
+
+
+.edit-home{
+    margin-top: 2%;
+    border: 1px solid #838383;
+    border-radius: 5px;
+    padding: 0.5% 0;
+    width: 7%;
+    display: flex;
+    justify-content: center;
+    margin: 2% 0;
+}
+.edit-home-btn{
+    text-decoration: none;
+    color: #838383;
+    font-size: 2em;
+}
+.edit-home:hover > a,
+.edit-home:hover{
+    color: red;
+    border-color: red;
+    cursor: pointer;
+}

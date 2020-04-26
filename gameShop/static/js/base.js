@@ -54,10 +54,7 @@ $(function() {
 
     $('.product-category-menu').on('click', ".product-category-menu-item", function(event){
        let elm = document.querySelector(".menu-list-active");
-       console.log(elm);
        elm.classList.remove('menu-list-active');
-       console.log(elm);
-        // document.querySelector(".menu-list-active").classList.toggle("menu-list-active");
         event.target.classList.add("menu-list-active");
         $.ajax({
             url: $(event.target).data('url'),
@@ -71,6 +68,7 @@ $(function() {
         });
     event.preventDefault();
     });
+   
 
     $('.product-category-menu').on('click', ".product-category-menu-item", function(event){
 

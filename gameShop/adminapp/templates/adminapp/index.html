@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'css/admin.css' %}">
+{% endblock %}
+
+{% block header %}
+    <ul class="info">
+        <li class="info-list logo"><a href="{% url 'main' %}" class="logo-link"><span class="historical">Store</span><br><span class="games">GAMES</span></a></li>
+        <li class="info-list contact"><i class="fa fa-mobile" aria-hidden="true"></i><div class="tel">+000 000 0000</div><a class="mail" href="#">jony@mail.com</a></li>
+    </ul>
+{% endblock %}
+
+
+{% block container %}
+    <h1>{{ page_title|title }}</h1>
+
+    <div class="admin-block">
+        
+        <div class="edit-home">
+            <a href="{% url 'main' %}" class="edit-home-btn">HOME</a>
+        </div>
+    </div>   
+{% endblock %}
+
+
+{% block contact %}
+{% endblock %}
