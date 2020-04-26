@@ -15,7 +15,7 @@
                         <span class="flex-gallery-item-price">{{ item.price }} $</span>
                     {% endif %}
                 </div>
-                <img src="{{ mediaURL }}{{ item.image }}" alt="{{ item.alt }}" class="flex-gallery-img gallery-activ">
+                <img src="{{ mediaURL }}{{ item.image|default:'no-image.jpg' }}" alt="{{ item.alt }}" class="flex-gallery-img gallery-activ">
             </a>
             <div class="gallery-item-buy">
                 <p class="gallery-titel-buy">{{ item.name }}</p>

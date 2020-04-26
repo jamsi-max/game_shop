@@ -1,22 +1,90 @@
 h1{
     text-align: center;
-    margin: 2% 0;
+    margin: 3% 0 2% 0;
+    text-transform: uppercase;
+    font-size: 2.5em;
 }
 .admin-block{
     display: flex;
     justify-content: center;
+    margin: 0 auto;
+    flex-direction: column;
+    align-items: center;
+}
+.admin-menu{
+    list-style-type: none;
+    display: flex;
+    justify-content: space-around;
+    width: 25vw;
+}
+.admin-menu li{
+}
+.admin-menu a{
+    text-decoration: none;
+    color: grey;
+    font-size: 2em;
+}
+.admin-menu a:hover{
+    color: black;
+}
+.active{
+    border-bottom: 3px solid #101010;
+}
+.admin-content img{
+    width: 8%;
+}
+.admin-user-item{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 40%;
+    margin: 2% auto;
+    font-size: 1.5em;
+}
+.admin-item-btn{
+    display: flex;
+    flex-direction: column;
+}
+.admin-item-btn a{
+    text-decoration: none;
+    padding: 15%;
+    text-transform: uppercase;
+    border: 1px solid;
+    margin-top: 10%;
+    width: 70px;
+    text-align: center;
+}
+.btn-edit{
+    color: #4b00ff;
+}
+.btn-dell{
+    color: red;
+}
+.admin-btn-hover:hover,
+.create-btn a:hover{
+    color: #838383;
+}
+.create-btn{
+    text-align: center;
+    margin-top: 3%;
+}
+.create-btn a{
+    text-decoration: none;
+    color: green;
+    font-size: 2em;
+    border: 1px solid;
+    padding: 0.5%;
+    text-transform: uppercase;
+    font-weight: bold;
 }
 
-
 .edit-home{
-    margin-top: 2%;
+    margin: 2% auto;
     border: 1px solid #838383;
-    border-radius: 5px;
     padding: 0.5% 0;
     width: 7%;
     display: flex;
     justify-content: center;
-    margin: 2% 0;
 }
 .edit-home-btn{
     text-decoration: none;
@@ -28,4 +96,7 @@ h1{
     color: red;
     border-color: red;
     cursor: pointer;
+}
+.no-active{
+    opacity: 0.5;
 }

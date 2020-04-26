@@ -1,3 +1,4 @@
+`use strict`
 let logout = function(){
     $(".auth-logout-link").click(function(event){
         $.ajax({
@@ -53,8 +54,8 @@ $(function() {
     logout();
 
     $('.product-category-menu').on('click', ".product-category-menu-item", function(event){
-       let elm = document.querySelector(".menu-list-active");
-       elm.classList.remove('menu-list-active');
+        let elm = document.querySelector(".menu-list-active");
+        elm.classList.remove('menu-list-active');
         event.target.classList.add("menu-list-active");
         $.ajax({
             url: $(event.target).data('url'),

@@ -12,7 +12,6 @@
     <div class="container">
         <div class="gallery gallery-products">
             <h2 class="gallery-text">Our Gallery</h2>
-<p>{{ request.resolver_match }}</p>
             <div class="product-category-menu">
                 <a class=" product-category-menu-item" href="#" data-url="{% url 'products:category' pk=0 %}">all</a>
                 {% for item in category %}
