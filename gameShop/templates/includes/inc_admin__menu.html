@@ -1,11 +1,14 @@
 <ul class="admin-menu">
     <li>
-        <a href="#" class="{% if request.resolver_match.url_name == 'index' %}active{% endif %}">Users</a>
+        <a href="{% url 'admin:index' %}" class="{% if request.resolver_match.url_name == 'index' %}active{% endif %}">Users</a>
     </li>
     <li>
-        <a href="#" class="{% if request.resolver_match.url_name == 'categories' %}active{% endif %}">Categories{% if categories.name %}: categories.name{% endif %}</a>
+        <a href="{% url 'admin:category' %}" class="{% if request.resolver_match.url_name == 'category' or category %}active{% endif %}">Categories{% if category %}: <b>{{ category.name }}</b>{% endif %}</a>
     </li>
     <li>
-        <a href="#" class="{% if request.resolver_match.url_name == 'news' %}active{% endif %}">News{% if categories.name %}: categories.name{% endif %}</a>
+        <a href="{% url 'admin:news' %}" class="{% if request.resolver_match.url_name == 'news' %}active{% endif %}">News{% if categories.name %}: categories.name{% endif %}</a>
     </li>
+    <!-- <li>
+        {{ request.resolver_match }}
+    </li> -->
 </ul>

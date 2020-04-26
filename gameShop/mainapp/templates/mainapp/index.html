@@ -104,16 +104,16 @@
                         {% if forloop.counter0 ==  1 %}news-latest-blok-calendar-2
                         {% elif forloop.counter0 ==  2 %}news-latest-blok-calendar-3
                         {% endif %}">
-                        <div class="news-calendar-item-1"> 
-                            <div class="news-data news-data-day">{{ item.data|date:"d" }}</div>
-                            <div class="news-data news-data-month">{{ item.data|date:"F"|title }}</div>
-                            <div class="news-data news-data-year">{{ item.data|date:"Y" }}</div>
+                            <div class="news-calendar-item-1"> 
+                                <div class="news-data news-data-day">{{ item.data|date:"d" }}</div>
+                                <div class="news-data news-data-month">{{ item.data|date:"F"|title }}</div>
+                                <div class="news-data news-data-year">{{ item.data|date:"Y" }}</div>
+                            </div>
+                            <div class="news-calendar-item-2">
+                                <div class="news-calendar-title-text">{{ item.news_tite|capfirst }}</div>
+                                <div class="news-calendar-text-content">{{ item.news_content|capfirst }}</div>
+                            </div>
                         </div>
-                        <div class="news-calendar-item-2">
-                            <div class="news-calendar-title-text">{{ item.news_tite }}</div>
-                            <div class="news-calendar-text-content">{{ item.news_content }}</div>
-                        </div>
-                    </div>
                     {% endfor %}
                 </div>
             </div>

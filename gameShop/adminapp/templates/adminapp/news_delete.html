@@ -1,0 +1,18 @@
+{% extends 'adminapp/index.html' %}
+{% load static %}
+
+{% block adminMenu %}
+{% endblock %}
+
+{% block contentList %}
+    <h2>Are you sure you want to delete this news item?</h2>
+    <div class="admin-form-news-del">
+        <form action="{% url 'admin:news_delete' news.pk %}" method="POST" class="admin-form">
+            {% csrf_token %}
+            <p>{{ news.data }}</p>
+            <p>{{ news.news_tite }}</p>
+            <input type="submit" value="{% if news.is_active %}delete{% else %}recovery{% endif %}" class="news-del-btn">
+        </form>
+        <a href="{% url 'admin:news' %}" class="form-сancel-btn">Cancel</a>
+    </div>  
+{% endblock %}

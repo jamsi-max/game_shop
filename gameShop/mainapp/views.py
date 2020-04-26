@@ -39,7 +39,8 @@ def index(request):
     services = Services.objects.all()
     products_list = Product.objects.all()
     main_social = MainSocial.objects.all()
-    news = News.objects.order_by('-data')[:3]
+    # news = News.objects.all().order_by('-data')[:3]
+    news = News.objects.filter(is_active=True).order_by('-data')[:3]
     team = Team.objects.all()[:4]
     content = {
         'page_title': 'main',

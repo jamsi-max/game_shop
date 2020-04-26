@@ -57,6 +57,7 @@ class News(models.Model):
     data = models.DateTimeField(verbose_name='дата добавления новости', auto_now_add=True)
     news_tite = models.CharField(verbose_name='заголовок новости', max_length=64, unique=True)
     news_content = models.TextField(verbose_name='содержание статьи')
+    is_active = models.BooleanField(verbose_name='удален', default=True)
 
     def __str__(self):
         return self.news_tite

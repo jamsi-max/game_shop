@@ -17,33 +17,38 @@
 {% block container %}
     <h1>{{ page_title|title }}</h1>
 
+    {% block adminMenu %}
     <div class="admin-block">
         {% include 'includes/inc_admin__menu.html' %}
     </div>
+    {% endblock %}
 
     <div class="admin-content">
-        <div class="create-btn">
-            <a href="#" class="admin-user-create-btn">+ create new user</a>
-        </div>
-    {% for item in user_list %}
-        <div class="admin-user-item {% if not item.is_active %}no-active{% endif %}">
-            <img src="{{ mediaURL }}{{ item.avatar|default:'noname.jpg' }}" alt="avatar">
-            <div>{% if item.is_superuser %}<b>Admin</b>{% else %}User{% endif %}</div>
-            <div>{{ item.username }}</div>
-            <div>{{ item.email }}</div>
-            <div>{{ item.last_login }}</div>
-            <div class="admin-item-btn">
-                <a href="#" class="btn-edit admin-btn-hover">edit</a>
-                <a href="#" class="btn-dell admin-btn-hover">{% if item.is_active %}dell{% else %}recover{% endif %}</a>
+        {% block contentList %}
+            <div class="create-btn">
+                <a href="#" class="admin-create-btn">+ create new user</a>
             </div>
-        </div>
-    {% endfor %}
+            {% for item in user_list %}
+                <div class="admin-user-item {% if not item.is_active %}no-active{% endif %}">
+                    <img src="{{ mediaURL }}{{ item.avatar|default:'noname.jpg' }}" alt="avatar">
+                    <div>{% if item.is_superuser %}<b>Admin</b>{% else %}User{% endif %}</div>
+                    <div>{{ item.username }}</div>
+                    <div>{{ item.email }}</div>
+                    <div>{{ item.last_login }}</div>
+                    <div class="admin-item-btn">
+                        <a href="#" class="btn-edit admin-btn-hover">edit</a>
+                        <a href="#" class="btn-dell admin-btn-hover">{% if item.is_active %}dell{% else %}recover{% endif %}</a>
+                    </div>
+                </div>
+            {% endfor %}
+        {% endblock contentList %} 
     </div>
-
+         
     <div class="edit-home">
             <a href="{% url 'main' %}" class="edit-home-btn">HOME</a>
-    </div>   
-{% endblock %}
+    </div>
+         
+{% endblock container %}
 
 
 {% block contact %}

@@ -45,6 +45,7 @@ $(function() {
                     $("#modal").prop('checked', false);
                     $('input[name="csrfmiddlewaretoken"]').val(getCookie('csrftoken'));
                     logout();
+                    $('.form-login-errors').text('');
                 }
             },
         });
