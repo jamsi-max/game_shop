@@ -10,7 +10,7 @@ class ProductCategory(models.Model):
         return self.name
 
     def get_absolute_url(self):
-        return reverse('products:category', kwargs={'pk': self.pk}) 
+        return reverse('products:category', kwargs={'pk': self.pk, 'page': 1}) 
 
 class Product(models.Model):
     category = models.ForeignKey(ProductCategory, on_delete=models.CASCADE)

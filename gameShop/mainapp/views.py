@@ -1,10 +1,13 @@
 from django.shortcuts import render, get_object_or_404
+from django.http import JsonResponse
+from django.template.loader import render_to_string
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 import random
+
 from basketapp.models import Basket
 from mainapp.models import ProductCategory, Product, MainSocial, Services, News, Team
 from django.conf import settings
-from django.http import JsonResponse
-from django.template.loader import render_to_string
+
 
 from authapp.forms import ShopUserLoginForm
 
@@ -39,7 +42,6 @@ def index(request):
     services = Services.objects.all()
     products_list = Product.objects.all()
     main_social = MainSocial.objects.all()
-    # news = News.objects.all().order_by('-data')[:3]
     news = News.objects.filter(is_active=True).order_by('-data')[:3]
     team = Team.objects.all()[:4]
     content = {
@@ -56,35 +58,29 @@ def index(request):
     return render(request, 'mainapp/index.html', context=content)
 
 
-# def products(request, pk=None):
-#     #!!!!!!!!!!! Делаем два прордукта со скидкой 
+def products(request, pk=None, page=1):
+    #!!!!!!!!!!! Делаем два прордукта со скидкой 
 
-#     # it = random.sample(get_discount_list(),2)[0]
-#     # print(f'{it.name}, {it.price}, {float(it.price)-float(it.price)*(it.discount/100)}')
-    
-#     if pk is not None and pk != 0:
-#         products_list = Product.objects.filter(category__pk=pk)
-#     else:
-#         products_list = Product.objects.all()
-        
-#     category = ProductCategory.objects.all()
-#     content = {
-#         'page_title': 'gallery',
-#         'products_list': products_list,
-#         'category': category,
-#         'mediaURL': settings.MEDIA_URL,
-#         'login_form': ShopUserLoginForm(),
-#         'basket': get_basket(request),
-#     }
-#     return render(request, 'mainapp/products.html', context=content)
-def products(request, pk=None):
-    if pk is not None and pk != 0:
-        products_list = Product.objects.filter(category__pk=pk)
+    # it = random.sample(get_discount_list(),2)[0]
+    # print(f'{it.name}, {it.price}, {float(it.price)-float(it.price)*(it.discount/100)}')
+    print(pk, page)
+    if int(pk) is not None and int(pk) != 0:
+        products_list = Product.objects.filter(category__pk=pk).order_by('name')
     else:
-        products_list = Product.objects.all()
+        products_list = Product.objects.all().order_by('name')
         
     category = ProductCategory.objects.all()
+
+    paginator = Paginator(products_list, 8)
+    try:
+        products_list = paginator.page(page)
+    except PageNotAnInteger:
+        products_list = paginator.page(1)
+    except EmptyPage:
+        products_list = paginator.page(paginator.num_pages)
+
     content = {
+        'pk': pk,
         'page_title': 'gallery',
         'products_list': products_list,
         'category': category,
@@ -94,10 +90,10 @@ def products(request, pk=None):
     }
     if request.is_ajax():
         result = render_to_string('includes/inc__product_item.html', context=content)
-        return JsonResponse({'result': result})
+        result_paginator = render_to_string('includes/inc__paginator.html', context={'pk': pk, 'products_list': products_list})
+        return JsonResponse({'result': result, 'paginator': result_paginator})
         
     return render(request, 'mainapp/products.html', context=content)
-
 
 def product(request, pk):
     current_product = get_object_or_404(Product, pk=pk)

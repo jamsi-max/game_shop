@@ -13,7 +13,7 @@
         <div class="gallery gallery-products">
             <h2 class="gallery-text">Our Gallery</h2>
             <div class="product-category-menu">
-                <a class=" product-category-menu-item" href="#" data-url="{% url 'products:category' pk=0 %}">all</a>
+                <a class=" product-category-menu-item" href="#" data-url="{% url 'products:category' pk=0 page=1 %}">all</a>
                 {% for item in category %}
                     <a class="product-category-menu-item" href="#" data-url="{{ item.get_absolute_url }}">{{ item.name }}</a>
                 {% endfor %}
@@ -23,12 +23,15 @@
                 {% include 'includes/inc__product_item.html' %}
             </div>
 
-            <div class="gallery-buttom">
+            <div class="paginator">
+                {% include 'includes/inc__paginator.html' %}
+            </div>
+            <!-- <div class="gallery-buttom">
                 <a href="#" class="gallery-buttom__link">
                     <span>Show more games</span>
                     <div class="gallery-arr"><i class="fa fa-angle-right" aria-hidden="true"></i></div>
                 </a> 
-            </div>
+            </div> -->
 
         </div>
     </div>

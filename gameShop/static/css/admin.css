@@ -190,7 +190,6 @@ h1{
 .admin-form-news-del p{
     font-size: 1.5em;
     justify-content: center;
-    font-weight: 600;
     margin: 5% 0;
 }
 .news-del-btn{
@@ -201,7 +200,6 @@ h1{
     padding: 2%;
     text-transform: uppercase;
     font-weight: bold;
-    margin: 3% auto;
     font-size: 1.5em;
 }
 .news-del-btn:hover{
@@ -212,8 +210,8 @@ h1{
 .form-сancel-btn{
     text-decoration: none;
     border: 1px solid;
-    width: 9%;
-    padding: 0.7%;
+    width: 30%;
+    padding: 2%;
     text-align: center;
     text-transform: uppercase;
     font-weight: 400;
@@ -231,4 +229,19 @@ h1{
 }
 .no-active{
     opacity: 0.3;
+}
+.form-btn-block{
+    display: flex;
+    justify-content: space-evenly;
+}
+.form-news-del-info{
+    display: flex;
+    justify-content: space-evenly;
+    border: 1px solid red;
+    margin: 5% 0;
+}
+.form-news-del-info span{
+    margin: 5% 0;
+    font-size: 1.5em;
+    font-weight: bold;
 }

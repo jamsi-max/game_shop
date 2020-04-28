@@ -3,7 +3,7 @@
         <a href="{% url 'admin:index' %}" class="{% if request.resolver_match.url_name == 'index' %}active{% endif %}">Users</a>
     </li>
     <li>
-        <a href="{% url 'admin:category' %}" class="{% if request.resolver_match.url_name == 'category' or category %}active{% endif %}">Categories{% if category %}: <b>{{ category.name }}</b>{% endif %}</a>
+        <a href="{% url 'admin:category' %}" class="{% if request.resolver_match.url_name == 'category' or category %}active{% endif %}">{% if category %}<b><<</b> Categories: <b>{{ category.name }}</b>{% else %}Categories{% endif %}</a>
     </li>
     <li>
         <a href="{% url 'admin:news' %}" class="{% if request.resolver_match.url_name == 'news' %}active{% endif %}">News{% if categories.name %}: categories.name{% endif %}</a>

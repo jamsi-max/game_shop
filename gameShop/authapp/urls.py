@@ -9,4 +9,5 @@ urlpatterns = [
     re_path(r'^logout/$', authapp.logout, name='logout'),
     re_path(r'^reg/$', authapp.reg, name='reg'),
     re_path(r'^edit/$', authapp.edit, name='edit'),
+    re_path(r'^chpassword/$', authapp.chpassword, name='chpassword'),
 ]

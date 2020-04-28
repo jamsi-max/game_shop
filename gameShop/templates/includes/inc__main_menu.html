@@ -5,7 +5,7 @@
         </a>
     </li>
     <li class="menu-list {% if request.resolver_match.url_name == 'category' %}menu-list-active{% endif %}">
-        <a href="{% url 'products:category' pk=0 %}" class="menu-link">
+        <a href="{% url 'products:category' pk=0 page=1 %}" class="menu-link">
             Gallery
         </a>
     </li>

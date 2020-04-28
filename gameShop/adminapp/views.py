@@ -47,7 +47,7 @@ def news(request):
         'page_title': 'admin',
         'news': News.objects.all().order_by('-is_active', '-data',),
     }
-    return render(request, 'adminapp/news.html', context=content)
+    return render(request, 'adminapp/news_list.html', context=content)
 
 
 @user_passes_test(lambda x: x.is_superuser)
@@ -90,19 +90,14 @@ def news_update(request, pk):
 
 @user_passes_test(lambda x: x.is_superuser)
 def news_delete(request, pk):
-
     if request.method == 'POST':
         news = get_object_or_404(News, pk=pk)
         if news.is_active:
             news.is_active = False
-            news.save()
-            return HttpResponseRedirect(reverse('admin:news'))
         else:
             news.is_active = True
-            news.save()
-            return HttpResponseRedirect(reverse('admin:news'))
-    else:
-        form = AdminNewsAddForm()
+        news.save()
+        return HttpResponseRedirect(reverse('admin:news'))
 
     content = {
         'page_title': 'admin: news delete',

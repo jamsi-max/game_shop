@@ -9,10 +9,16 @@
     <div class="admin-form-news-del">
         <form action="{% url 'admin:news_delete' news.pk %}" method="POST" class="admin-form">
             {% csrf_token %}
-            <p>{{ news.data }}</p>
-            <p>{{ news.news_tite }}</p>
-            <input type="submit" value="{% if news.is_active %}delete{% else %}recovery{% endif %}" class="news-del-btn">
+            <div class="form-news-del-info">
+                <span>News:</span>
+                <p>{{ news.data }}</p>
+                <p>{{ news.news_tite }}</p>
+            </div>
+            <div class="form-btn-block">
+                <input type="submit" value="{% if news.is_active %}delete{% else %}recovery{% endif %}" class="news-del-btn">
+                <a href="{% url 'admin:news' %}" class="form-сancel-btn">Cancel</a>
+            </div>
         </form>
-        <a href="{% url 'admin:news' %}" class="form-сancel-btn">Cancel</a>
+        
     </div>  
 {% endblock %}

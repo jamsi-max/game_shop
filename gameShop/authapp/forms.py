@@ -1,4 +1,4 @@
-from django.contrib.auth.forms import AuthenticationForm, UserCreationForm, UserChangeForm
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm, UserChangeForm, PasswordChangeForm
 from django import forms
 from authapp.models import ShopUser
 
@@ -53,3 +53,13 @@ class ShopUserEditForm(UserChangeForm):
             raise forms.ValidationError('Вам должно быть больше 18 лет')
         return data    
 
+class ShopUserChangePassword(PasswordChangeForm):
+    class Meta:
+        model = ShopUser
+        fields = ('__all__')
+
+    def __init__(self, *args, **kwars):
+        super(ShopUserChangePassword, self).__init__(*args, **kwars)
+        for field in self.fields.values():
+            field.widget.attrs['class'] = 'form-reg-item'
+            field.help_text = ''
