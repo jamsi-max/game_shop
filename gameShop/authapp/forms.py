@@ -1,65 +1,48 @@
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm, UserChangeForm, PasswordChangeForm
 from django import forms
-from authapp.models import ShopUser
 
-class ShopUserLoginForm(AuthenticationForm):
+from authapp.models import ShopUser
+from mainapp.models import ProductCategory
+from adminapp.utils import FormWidgetMixin, check_age
+
+class ShopUserLoginForm(FormWidgetMixin, AuthenticationForm):
     class Meta:
         model = ShopUser
         fields = ('username', 'password')
+        # widgets = {
+        #     'username': forms.TextInput(attrs={'class': 'form-log-item'})
+        # }
 
-    # widgets = {
-    #     'username': forms.TextInput(attrs={'class': 'form-log-item'})
-    # }
+    placeholder = True
+    class_all_fields = 'form-log-item'
 
-    def __init__(self, *args, **kwars):
-        super(ShopUserLoginForm, self).__init__(*args, **kwars)
-        for field_name, field in self.fields.items():
-            field.widget.attrs['placeholder'] = f'{field_name}'
-            field.widget.attrs['class'] = 'form-log-item'
 
-class ShopUserRegisterForm(UserCreationForm):
+class ShopUserRegisterForm(FormWidgetMixin, UserCreationForm):
     class Meta:
         model = ShopUser
         fields = ('username', 'password1', 'password2', 'first_name', 'age', 'email', 'avatar')
-    
-    def __init__(self, *args, **kwars):
-        super(ShopUserRegisterForm, self).__init__(*args, **kwars)
-        for field_name, field in self.fields.items():
-            field.widget.attrs['class'] = 'form-reg-item'
-            field.help_text = ''
+
+    class_all_fields = 'form-reg-item'
     
     def clean_age(self):
-        data = self.cleaned_data['age']
-        if data < 18:
-            raise forms.ValidationError('Вам должно быть больше 18 лет')
-        return data
+        return check_age(self, 18)
     
-class ShopUserEditForm(UserChangeForm):
+class ShopUserEditForm(FormWidgetMixin, UserChangeForm):
     class Meta:
         model = ShopUser
         fields = ('username', 'password', 'first_name', 'age', 'email', 'avatar')
 
-    def __init__(self, *args, **kwars):
-        super(ShopUserEditForm, self).__init__(*args, **kwars)
-        for field_name, field in self.fields.items():
-            field.widget.attrs['class'] = 'form-reg-item'
-            field.help_text = ''
-            if field_name == 'password':
-                field.widget = forms.HiddenInput()
+    class_all_fields = 'form-reg-item'
+    password = False
     
     def clean_age(self):
-        data = self.cleaned_data['age']
-        if data < 18:
-            raise forms.ValidationError('Вам должно быть больше 18 лет')
-        return data    
+        return check_age(self, 18)    
 
-class ShopUserChangePassword(PasswordChangeForm):
+class ShopUserChangePassword(FormWidgetMixin, PasswordChangeForm):
     class Meta:
         model = ShopUser
         fields = ('__all__')
 
-    def __init__(self, *args, **kwars):
-        super(ShopUserChangePassword, self).__init__(*args, **kwars)
-        for field in self.fields.values():
-            field.widget.attrs['class'] = 'form-reg-item'
-            field.help_text = ''
+    class_all_fields = 'form-reg-item'
+
+ 

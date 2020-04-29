@@ -1,6 +1,9 @@
 from django.db import models
 from django.shortcuts import reverse
 
+from adminapp.utils import togle_active
+
+
 class ProductCategory(models.Model):
     name = models.CharField(verbose_name='Категория', max_length=64, unique=True)
     description = models.TextField(verbose_name='Описание', blank=True)
@@ -10,7 +13,13 @@ class ProductCategory(models.Model):
         return self.name
 
     def get_absolute_url(self):
-        return reverse('products:category', kwargs={'pk': self.pk, 'page': 1}) 
+        return reverse('products:category', kwargs={'pk': self.pk, 'page': 1})
+
+    def soft_delete(self):
+        togle_active(self)
+
+    class Meta:
+        ordering = ['-is_active', 'name']  
 
 class Product(models.Model):
     category = models.ForeignKey(ProductCategory, on_delete=models.CASCADE)
@@ -35,6 +44,12 @@ class Product(models.Model):
     @property
     def get_discount_price(self):
         return float(self.price) - (float(self.price) * (self.discount / 100))
+
+    def soft_delete(self):
+        togle_active(self)
+    
+    class Meta:
+        ordering = ['-is_active', 'name'] 
 
 class MainSocial(models.Model):
     name = models.CharField(verbose_name='имя социальной сети', max_length=24, unique=True)
@@ -63,7 +78,13 @@ class News(models.Model):
         return self.news_tite
 
     def get_absolute_url(self):
-        return reverse('news', kwargs={'pk': self.pk}) 
+        return reverse('news', kwargs={'pk': self.pk})
+
+    def soft_delete(self):
+        togle_active(self)
+
+    class Meta:
+        ordering = ['-is_active', '-data'] 
 
 class Team(models.Model):
     name = models.CharField(verbose_name='имя', max_length=32)

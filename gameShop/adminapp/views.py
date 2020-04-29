@@ -1,106 +1,125 @@
 from django.shortcuts import render, get_object_or_404, reverse, HttpResponseRedirect
 from django.contrib.auth.decorators import user_passes_test
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.conf import settings
+from django.views.generic.list import ListView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.views.generic import View
+from django.urls import reverse_lazy
+
 
 from authapp.models import ShopUser
 from mainapp.models import ProductCategory, Product, News
-from adminapp.forms import AdminNewsAddForm
+from adminapp.forms import AdminNewsAddForm, AdminCreateUserForm, AdminUpdateUserForm, AdminCreateCategoryForm, AdminCreateProductForm
+from adminapp.utils import SuperuserCheckMixin, SoftDeleteMixin, TitleMixin
 
+
+class UserListView(SuperuserCheckMixin, TitleMixin, ListView):
+    title = 'Admin: User'
+    model = ShopUser
+
+class UserCreateView(SuperuserCheckMixin, TitleMixin, CreateView):
+    title = 'Admin: Create User'
+    model = ShopUser
+    success_url = reverse_lazy('admin:index')
+    form_class = AdminCreateUserForm
+
+class UserUpdateView(SuperuserCheckMixin, TitleMixin, UpdateView):
+    title = 'Admin: Update User'
+    model = ShopUser
+    success_url = reverse_lazy('admin:index')
+    form_class = AdminUpdateUserForm
+
+class UserDeleteView(SuperuserCheckMixin, TitleMixin, SoftDeleteMixin, DeleteView):
+    title = 'Admin: Delete User'
+    model = ShopUser
+    success_url = reverse_lazy('admin:index')
+
+class CategoryListView(SuperuserCheckMixin, TitleMixin, ListView):
+    title = 'Admin: Category'
+    model = ProductCategory
+
+class CategoryCreateView(SuperuserCheckMixin, TitleMixin, CreateView):
+    title = 'Admin: Create Category'
+    model = ProductCategory
+    success_url = reverse_lazy('admin:category')
+    form_class = AdminCreateCategoryForm
+
+class CategoryUpdateView(SuperuserCheckMixin, TitleMixin, UpdateView):
+    title = 'Admin: Update Category'
+    model = ProductCategory
+    success_url = reverse_lazy('admin:category')
+    form_class = AdminCreateCategoryForm
+
+class CategoryDeleteView(SuperuserCheckMixin, TitleMixin, SoftDeleteMixin, DeleteView):
+    title = 'Admin: Delete Category'
+    model = ProductCategory
+    success_url = reverse_lazy('admin:category')
+
+# class ProductListView(SuperuserCheckMixin, TitleMixin, ListView):
+#     title = 'Admin: Category'
+#     model = Product
 
 @user_passes_test(lambda x: x.is_superuser)
-def index(request):
+def product(request, pk, page=1):
+    print(pk, page)
+    category = get_object_or_404(ProductCategory, pk=int(pk))
+    product_list = category.product_set.all().order_by('-is_active', 'name')
+
+    paginator = Paginator(product_list, 5)
+    try:
+        product_list = paginator.page(page)
+    except PageNotAnInteger:
+        product_list = paginator.page(1)
+    except EmptyPage:
+        product_list = paginator.page(paginator.num_pages)
 
     content = {
-        'page_title': 'admin',
-        'user_list': ShopUser.objects.all().order_by('-is_active', '-is_superuser'),
-        'mediaURL': settings.MEDIA_URL,
-    }
-    return render(request, 'adminapp/index.html', context=content)
-
-
-@user_passes_test(lambda x: x.is_superuser)
-def category(request):
-
-    content = {
-        'page_title': 'admin',
-        'category_list': ProductCategory.objects.all().order_by('id'),
-    }
-    return render(request, 'adminapp/category_list.html', context=content)
-
-
-@user_passes_test(lambda x: x.is_superuser)
-def product(request, pk):
-    category = get_object_or_404(ProductCategory, pk=pk)
-    content = {
-        'page_title': 'admin',
+        'page_title': 'admin: products',
         'category': category,
-        'product_list': category.product_set.all().order_by('-price'),
+        'object_list': product_list,
         'mediaURL': settings.MEDIA_URL,
     }
-    return render(request, 'adminapp/product_list.html', context=content)
+    return render(request, 'mainapp/product_list.html', context=content)
+
+class ProductCreateView(SuperuserCheckMixin, TitleMixin, CreateView):
+    title = 'Admin: Create Product'
+    model = Product
+    success_url = reverse_lazy('admin:category')
+    form_class = AdminCreateProductForm
+
+class ProductUpdateView(SuperuserCheckMixin, TitleMixin, UpdateView):
+    title = 'Admin: Update Product'
+    model = Product
+    success_url = reverse_lazy('admin:category')
+    form_class = AdminCreateProductForm
+
+class ProductDeleteView(SuperuserCheckMixin, TitleMixin, SoftDeleteMixin, DeleteView):
+    title = 'Admin: Delete Product'
+    model = Product
+    success_url = reverse_lazy('admin:category')
 
 
-@user_passes_test(lambda x: x.is_superuser)
-def news(request):
+class NewsListView(SuperuserCheckMixin, TitleMixin, ListView):
+    title = 'Admin: News'
+    model = News
 
-    content = {
-        'page_title': 'admin',
-        'news': News.objects.all().order_by('-is_active', '-data',),
-    }
-    return render(request, 'adminapp/news_list.html', context=content)
-
-
-@user_passes_test(lambda x: x.is_superuser)
-def news_add(request):
-
-    if request.method == 'POST':
-        form = AdminNewsAddForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return HttpResponseRedirect(reverse('admin:news'))
-    else:
-        form = AdminNewsAddForm()
-
-    content = {
-        'page_title': 'admin: news add',
-        'form': form,
-    }
-    return render(request, 'adminapp/news_add.html', context=content)
+class NewsCreateView(SuperuserCheckMixin, TitleMixin, CreateView):
+    title = 'Admin: Create News'
+    model = News
+    success_url = reverse_lazy('admin:news')
+    form_class = AdminNewsAddForm
 
 
-@user_passes_test(lambda x: x.is_superuser)
-def news_update(request, pk):
-    
-    news = get_object_or_404(News, pk=pk)
-
-    if request.method == 'POST':
-        form = AdminNewsAddForm(request.POST, instance=news)
-        if form.is_valid():
-            form.save()
-            return HttpResponseRedirect(reverse('admin:news'))
-    else:
-        form = AdminNewsAddForm(instance=news)
-
-    content = {
-        'page_title': 'admin: news update',
-        'form': form,
-    }
-    return render(request, 'adminapp/news_add.html', context=content)
+class NewsUpdateView(SuperuserCheckMixin, TitleMixin, UpdateView):
+    title = 'Admin: Update News'
+    model = News
+    success_url = reverse_lazy('admin:news')
+    form_class = AdminNewsAddForm
 
 
-@user_passes_test(lambda x: x.is_superuser)
-def news_delete(request, pk):
-    if request.method == 'POST':
-        news = get_object_or_404(News, pk=pk)
-        if news.is_active:
-            news.is_active = False
-        else:
-            news.is_active = True
-        news.save()
-        return HttpResponseRedirect(reverse('admin:news'))
+class NewsDeleteView(SuperuserCheckMixin, TitleMixin, SoftDeleteMixin, DeleteView):
+    title = 'Admin: Delete News'
+    model = News
+    success_url = reverse_lazy('admin:news')
 
-    content = {
-        'page_title': 'admin: news delete',
-        'news': get_object_or_404(News, pk=pk),
-    }
-    return render(request, 'adminapp/news_delete.html', context=content)

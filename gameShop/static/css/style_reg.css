@@ -65,7 +65,7 @@ form p:last-child{
     font-family: Roboto Condensed;
     list-style: none;
     color: red;
-    font-size: 1.2em;
+    font-size: 2em;
 }
 .form-reg-item input.upload{
     cursor: pointer;

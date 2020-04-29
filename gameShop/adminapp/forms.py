@@ -1,17 +1,52 @@
 from django import forms
+from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 
-from mainapp.models import News
+from authapp.models import ShopUser
+from mainapp.models import Product, ProductCategory, News
+from adminapp.utils import FormWidgetMixin, check_age
 
+class AdminCreateUserForm(FormWidgetMixin, UserCreationForm):
+    class Meta:
+        model = ShopUser
+        fields = ('username', 'password1', 'password2', 'first_name', 'last_name', 'age', 'email', 'avatar','is_staff', 'is_superuser', 'is_active')
 
-class AdminNewsAddForm(forms.ModelForm):
+    class_all_fields = 'form-item-news-add'
+    
+    def clean_age(self):
+        return check_age(self, 18)
+
+class AdminUpdateUserForm(FormWidgetMixin, UserChangeForm):
+    class Meta:
+        model = ShopUser
+        fields = ('username', 'first_name', 'last_name', 'age', 'email', 'avatar','is_staff', 'is_superuser', 'is_active')
+
+    class_all_fields = 'form-item-news-add'
+    password = False
+    
+    def clean_age(self):
+        return check_age(self, 18)
+
+class AdminCreateCategoryForm(FormWidgetMixin, forms.ModelForm):
+    class Meta:
+        model = ProductCategory
+        fields = ('name', 'description', 'is_active')
+
+    class_all_fields = 'form-item-news-add'
+
+class AdminNewsAddForm(FormWidgetMixin, forms.ModelForm):
     class Meta:
         model = News
         fields = ('news_tite', 'news_content')
 
-    def __init__(self, *args, **kwars):
-        super(AdminNewsAddForm, self).__init__(*args, **kwars)
-        for field_name, field in self.fields.items():
-            field.widget.attrs['class'] = 'form-item-news-add'
+    class_all_fields = 'form-item-news-add'
+
+class AdminCreateProductForm(FormWidgetMixin, forms.ModelForm):
+    class Meta:
+        model = Product
+        fields = ('category', 'name', 'desc', 'desc_long', 'price', 'quantity', 'discount', 'is_active', 'image', 'alt')
+
+    class_all_fields = 'form-item-news-add'
+
 
 
     

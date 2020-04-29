@@ -28,7 +28,7 @@ def get_basket(request):
     return request.user.basket.all() if request.user.is_authenticated else []
 
 def get_same_products(current_product):
-    same_products = list(current_product.category.product_set.exclude(pk=current_product.pk))
+    same_products = list(current_product.category.product_set.filter(is_active=True).exclude(pk=current_product.pk))
     return random.sample(same_products, 4) if len(same_products) > 4 else same_products
   
 def get_name(current_product):
@@ -40,7 +40,7 @@ def get_discount_list():
 
 def index(request):
     services = Services.objects.all()
-    products_list = Product.objects.all()
+    products_list = Product.objects.filter(is_active=True)
     main_social = MainSocial.objects.all()
     news = News.objects.filter(is_active=True).order_by('-data')[:3]
     team = Team.objects.all()[:4]
@@ -60,16 +60,16 @@ def index(request):
 
 def products(request, pk=None, page=1):
     #!!!!!!!!!!! Делаем два прордукта со скидкой 
-
     # it = random.sample(get_discount_list(),2)[0]
     # print(f'{it.name}, {it.price}, {float(it.price)-float(it.price)*(it.discount/100)}')
+
     print(pk, page)
     if int(pk) is not None and int(pk) != 0:
-        products_list = Product.objects.filter(category__pk=pk).order_by('name')
+        products_list = Product.objects.filter(category__pk=pk, is_active=True).order_by('name')
     else:
-        products_list = Product.objects.all().order_by('name')
+        products_list = Product.objects.filter(is_active=True).order_by('name')
         
-    category = ProductCategory.objects.all()
+    category = ProductCategory.objects.filter(is_active=True)
 
     paginator = Paginator(products_list, 8)
     try:

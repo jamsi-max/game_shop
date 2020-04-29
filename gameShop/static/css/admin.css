@@ -41,6 +41,8 @@ h1{
 .admin-item-btn{
     display: flex;
     flex-direction: column;
+    margin-right: 2%;
+    width: 10%;
 }
 .admin-item-btn a{
     text-decoration: none;
@@ -109,8 +111,10 @@ h1{
     text-align: center;
 }
 .admin-category-desc{
-    width: 50%;
     text-align: start;
+    flex: auto;
+    margin-left: 2%;
+    width: 70%;
 }
 .admin-news-title{
     width: 20%;
@@ -144,7 +148,7 @@ h1{
     border: 1px solid #999999;
     color: #838383;
     font-family: Roboto Condensed;
-    font-size: 1.5em;
+    font-size: 2em;
     font-weight: 400;
     line-height: 2;
     padding-left: 10px;
@@ -207,7 +211,7 @@ h1{
     color: white;
     cursor: pointer;
 }
-.form-сancel-btn{
+.form-cancel-btn{
     text-decoration: none;
     border: 1px solid;
     width: 30%;
@@ -218,7 +222,7 @@ h1{
     font-size: 1.5em;
     color: #5a63cd;
 }
-.form-сancel-btn:hover{
+.form-cancel-btn:hover{
     background-color: #5a63cd;
     color: white;
 }
@@ -244,4 +248,22 @@ h1{
     margin: 5% 0;
     font-size: 1.5em;
     font-weight: bold;
+}
+.paginator{
+    display: flex;
+    justify-content: center;
+    font-size: 2em;
+}
+.admin-paginator-btn{
+    margin: 0 1%;
+}
+
+input[type="checkbox"]{
+    height: 35px;
+}
+.admin-content .img-product{
+    width: 10%;
+    position: absolute;
+    left: 15%;
+    top: 200%;
 }
