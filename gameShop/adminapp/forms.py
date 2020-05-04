@@ -3,28 +3,25 @@ from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 
 from authapp.models import ShopUser
 from mainapp.models import Product, ProductCategory, News
-from adminapp.utils import FormWidgetMixin, check_age
+from adminapp.utils import FormWidgetMixin, AgeValidationMixin
 
-class AdminCreateUserForm(FormWidgetMixin, UserCreationForm):
+
+class AdminCreateUserForm(FormWidgetMixin, UserCreationForm, AgeValidationMixin):
     class Meta:
         model = ShopUser
         fields = ('username', 'password1', 'password2', 'first_name', 'last_name', 'age', 'email', 'avatar','is_staff', 'is_superuser', 'is_active')
 
     class_all_fields = 'form-item-news-add'
     
-    def clean_age(self):
-        return check_age(self, 18)
 
-class AdminUpdateUserForm(FormWidgetMixin, UserChangeForm):
+class AdminUpdateUserForm(FormWidgetMixin, UserChangeForm, AgeValidationMixin):
     class Meta:
         model = ShopUser
-        fields = ('username', 'first_name', 'last_name', 'age', 'email', 'avatar','is_staff', 'is_superuser', 'is_active')
+        fields = ('username', 'first_name', 'last_name', 'age', 'email', 'avatar', 'is_staff', 'is_superuser', 'is_active')
 
     class_all_fields = 'form-item-news-add'
     password = False
-    
-    def clean_age(self):
-        return check_age(self, 18)
+
 
 class AdminCreateCategoryForm(FormWidgetMixin, forms.ModelForm):
     class Meta:
@@ -33,12 +30,14 @@ class AdminCreateCategoryForm(FormWidgetMixin, forms.ModelForm):
 
     class_all_fields = 'form-item-news-add'
 
+
 class AdminNewsAddForm(FormWidgetMixin, forms.ModelForm):
     class Meta:
         model = News
         fields = ('news_tite', 'news_content')
 
     class_all_fields = 'form-item-news-add'
+
 
 class AdminCreateProductForm(FormWidgetMixin, forms.ModelForm):
     class Meta:

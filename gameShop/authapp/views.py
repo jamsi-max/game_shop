@@ -26,6 +26,7 @@ def login(request):
                     'basket': request.user.basket.all(),
                 }
 
+                # result = render_to_string('includes/inc__main_menu.html', context=content, request=request)
                 result = render_to_string('includes/inc__main_menu.html', context=content)
                 return JsonResponse({'result': result})
 

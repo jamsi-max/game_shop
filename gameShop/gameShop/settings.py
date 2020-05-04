@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'authapp',
     'basketapp',
     'adminapp',
+    'searchapp',
 ]
 
 MIDDLEWARE = [

@@ -5,6 +5,7 @@ from django import forms
 
 from django.views.generic.edit import DeleteView
 
+
 class SuperuserCheckMixin:
     @method_decorator(user_passes_test(lambda x: x.is_superuser))
     def dispatch(self, *args, **kwargs):
@@ -15,9 +16,10 @@ class SoftDeleteMixin(DeleteView):
         self.object = self.get_object()
         self.object.soft_delete()
         return HttpResponseRedirect(self.get_success_url())
+    
 
 class TitleMixin:
-    title = None
+    title = ''
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['page_title'] = self.title
@@ -38,15 +40,17 @@ class FormWidgetMixin:
                 field.widget.attrs['placeholder'] = f'{field_name}'
 
 
+class AgeValidationMixin:
+    def clean_age(self):
+            age = self.cleaned_data['age']
+            if age < 18:
+                raise forms.ValidationError(f'You must be over 18 years old')
+            return age
+
+
 def togle_active(odj):
         if odj.is_active:
             odj.is_active = False
         else:
             odj.is_active = True
         odj.save()
-
-def check_age(odj, age):
-        data = odj.cleaned_data['age']
-        if data < age:
-            raise forms.ValidationError(f'You must be over {age} years old')
-        return data

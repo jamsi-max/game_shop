@@ -35,7 +35,7 @@ def get_name(current_product):
     return current_product.name.split(':')
 
 def get_discount_list():
-    return [_ for _ in Product.objects.exclude(discount=0)]
+    return [_ for _ in Product.objects.filter(is_active=True).exclude(discount=0)]
 
 
 def index(request):

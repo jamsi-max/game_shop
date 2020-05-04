@@ -19,6 +19,7 @@ from django.urls import path, re_path
 import mainapp.views as mainapp
 import authapp.views as authapp
 import adminapp.views as adminapp
+import searchapp.views as searchapp
 from django.conf.urls import include
 from django.conf import settings
 from django.conf.urls.static import static
@@ -31,6 +32,7 @@ urlpatterns = [
     re_path(r'^basket/', include('basketapp.urls', namespace='basket')),
     re_path(r'^admin/', include('adminapp.urls', namespace='admin')),
     re_path(r'^contact/$', mainapp.contact, name='contact'),
+    re_path(r'^search/$', searchapp.search, name='search'),
     
     # re_path(r'^admin/', admin.site.urls, name='admin'),
 ]

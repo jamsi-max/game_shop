@@ -88,4 +88,19 @@ $(function() {
     });
    
 
+    document.querySelector('.search-input').addEventListener('keyup', function(event){
+        $.ajax({
+            url: "/search/",
+            data: {'data': document.querySelector('.search-input').value},
+            success: function(data){
+                if (!data.result){
+                    console.log('no')
+                }else{
+                    $("#search-drop-block").html(data.result);
+                }
+            },
+        });
+    event.preventDefault();
+    });
+
 });
