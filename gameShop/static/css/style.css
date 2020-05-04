@@ -1265,3 +1265,6 @@ font-size: 2em;
   color: red;
   font-size: 1.2em;
 }
+.search-item-price-through{
+  text-decoration: line-through;
+}
